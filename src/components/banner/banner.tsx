@@ -1,7 +1,8 @@
 import styled, { keyframes } from "styled-components";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
-import { useState } from "react";
+// import { useState } from "react";
 import { Cards } from "../../utils/cardsHome.ts";
+import { useBanner } from "../../context/bannerContext.tsx";
 
 const KeyFrame = keyframes`
   0% {
@@ -129,7 +130,7 @@ const Descricao = styled.p<{ $ativo: boolean }>`
 `;
 
 export const Banner = () => {
-  const [indexAtual, setIndexAtual] = useState(0);
+  const { indexAtual, setIndexAtual } = useBanner();
 
   const trocarImagem = (direcao: "Proxima" | "Anterior") => {
     setIndexAtual((prev) =>
