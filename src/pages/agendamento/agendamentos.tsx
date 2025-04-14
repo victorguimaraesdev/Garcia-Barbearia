@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Cards } from "../../utils/cardsHome";
-import { useBanner } from "../../context/bannerContext";
+import { useBanner } from "../../context/useBanner";
+import { AgendamentoCard } from "../../components/agendamentoCard/agendamentoCard";
 
 const Container = styled.div`
   position: relative;
@@ -30,6 +31,7 @@ export const Agendamentos = () => {
       {Cards.map((src, i) => (
         <Imagem key={i} src={src.imagens} $ativa={i === indexAtual} />
       ))}
+      <AgendamentoCard />
     </Container>
   );
 };

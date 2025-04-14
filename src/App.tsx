@@ -4,7 +4,7 @@ import { Home } from "./pages/home/home";
 import { Produtos } from "./pages/produtos/produtos.tsx";
 import { Cursos } from "./pages/cursos/cursos.tsx";
 import { Routes, Route } from "react-router-dom";
-import { BannerProvider } from "./context/bannerContext.tsx";
+import { BannerProvider } from "./context/BannerProvider";
 
 function App() {
   return (

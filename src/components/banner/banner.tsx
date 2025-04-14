@@ -1,8 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
-// import { useState } from "react";
 import { Cards } from "../../utils/cardsHome.ts";
-import { useBanner } from "../../context/bannerContext.tsx";
+import { useBanner } from "../../context/useBanner.ts";
 
 const KeyFrame = keyframes`
   0% {
