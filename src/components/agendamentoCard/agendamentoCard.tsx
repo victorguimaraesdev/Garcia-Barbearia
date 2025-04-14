@@ -13,7 +13,7 @@ const KeyFrame = keyframes`
 `;
 
 const Container = styled.div`
-  margin-top: 200px;
+  margin-top: 50px;
   width: 100vw;
   min-height: 100vh;
   display: flex;
@@ -29,7 +29,7 @@ const Container = styled.div`
   @media (max-width: 768px) {
     padding: 10px;
     font-size: 1rem;
-    margin-top: 200px;
+    margin-top: 50px;
   }
 `;
 

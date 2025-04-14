@@ -12,7 +12,7 @@ export const Cards = [
     Valor: "R$ 10,00",
   },
   {
-    corte: "Degrade",
-    valor: "R$ 35,00",
+    Corte: "Degrade",
+    Valor: "R$ 35,00",
   },
 ];

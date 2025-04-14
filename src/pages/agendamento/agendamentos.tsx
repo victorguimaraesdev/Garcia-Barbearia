@@ -6,7 +6,7 @@ import { AgendamentoCard } from "../../components/agendamentoCard/agendamentoCar
 const Container = styled.div`
   position: relative;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
