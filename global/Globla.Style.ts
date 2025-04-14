@@ -19,6 +19,8 @@ export const GlobalStyle = createGlobalStyle`
    body {
     background: var(--contraste); 
     color: white;
+    overflow-x: hidden;
+    overflow-y: auto;
    }
    
    ul {

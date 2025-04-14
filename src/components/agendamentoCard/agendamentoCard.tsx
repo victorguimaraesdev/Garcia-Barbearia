@@ -13,12 +13,13 @@ const KeyFrame = keyframes`
 `;
 
 const Container = styled.div`
+  margin-top: 200px;
   width: 100vw;
-  min-height: 60%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 20px;
   color: var(--primaria);
   font-size: 1.2rem;
@@ -28,7 +29,7 @@ const Container = styled.div`
   @media (max-width: 768px) {
     padding: 10px;
     font-size: 1rem;
-    margin-top: 70px;
+    margin-top: 200px;
   }
 `;
 
@@ -49,7 +50,6 @@ const Card = styled.div<{ delay: number }>`
   animation: ${KeyFrame} 0.6s ease forwards;
   animation-delay: ${(props) => props.delay}s;
   opacity: 0;
-  transform: translateY(200px);
 
   @media (max-width: 1024px) {
     width: 80%;
