@@ -1,5 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { Cards } from "../../utils/cardsAgendamentos.ts";
+import { Modal } from "../modal/modal.tsx";
+import { useState } from "react";
 
 const KeyFrame = keyframes`
   0% {
@@ -13,7 +15,7 @@ const KeyFrame = keyframes`
 `;
 
 const Container = styled.div`
-  margin-top: 50px;
+  margin-top: 100px;
   width: 100vw;
   min-height: 100vh;
   display: flex;
@@ -29,7 +31,7 @@ const Container = styled.div`
   @media (max-width: 768px) {
     padding: 10px;
     font-size: 1rem;
-    margin-top: 50px;
+    margin-top: 90px;
   }
 `;
 
@@ -127,6 +129,8 @@ const Botão = styled.button`
 `;
 
 export const AgendamentoCard = () => {
+  const [openModal, setOpenModal] = useState(false);
+
   return (
     <Container>
       {Cards.map((_, i) => (
@@ -138,9 +142,12 @@ export const AgendamentoCard = () => {
               <Valor>{Cards[i].Valor}</Valor>
             </ContainerInformações>
           </ContainerInicio>
-          <Botão>Agendar</Botão>
+          <Botão onClick={() => setOpenModal(true)}>Agendar</Botão>
         </Card>
       ))}
+      <Modal isOpen={openModal} onClose={() => setOpenModal(false)}>
+        <h1>Olá</h1>
+      </Modal>
     </Container>
   );
 };
