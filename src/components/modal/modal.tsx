@@ -48,8 +48,8 @@ type Props = {
 export const Modal = ({ isOpen, children, onClose }: Props) => {
   if (isOpen) {
     return (
-      <Overlay>
-        <Container>
+      <Overlay onClick={onClose}>
+        <Container onClick={(e) => e.stopPropagation()}>
           <BotaoFechar onClick={onClose}>X</BotaoFechar>
           {children}
         </Container>
