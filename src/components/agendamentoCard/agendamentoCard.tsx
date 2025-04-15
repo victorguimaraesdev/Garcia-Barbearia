@@ -2,6 +2,7 @@ import styled, { keyframes } from "styled-components";
 import { Cards } from "../../utils/cardsAgendamentos.ts";
 import { Modal } from "../modal/modal.tsx";
 import { useState } from "react";
+import { FormularioCard } from "./formularioCard/formularioCard.tsx";
 
 const KeyFrame = keyframes`
   0% {
@@ -146,7 +147,7 @@ export const AgendamentoCard = () => {
         </Card>
       ))}
       <Modal isOpen={openModal} onClose={() => setOpenModal(false)}>
-        <h1>Olá</h1>
+        <FormularioCard />
       </Modal>
     </Container>
   );
