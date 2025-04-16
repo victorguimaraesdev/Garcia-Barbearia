@@ -7,8 +7,7 @@
 - 📅 Agendamento de horários com dia e hora marcados
 - 👤 Cadastro e login de clientes
 - ✂️ Painel do barbeiro para visualização e gestão de horários
-- 🔔 Notificações visuais de agendamentos
-- 📱 Design responsivo e moderno com Material UI
+- 📱 Design responsivo e moderno 
 
 ## 🛠️ Tecnologias Utilizadas
 
