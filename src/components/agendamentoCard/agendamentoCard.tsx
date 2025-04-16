@@ -15,9 +15,9 @@ const KeyFrame = keyframes`
 `;
 
 const Container = styled.div`
-  margin-top: 100px;
-  width: 100vw;
-  min-height: 100vh;
+  min-height: 100%;
+  width: 100%;
+  /* margin-top: 100px; */
   display: flex;
   flex-direction: column;
   align-items: center;

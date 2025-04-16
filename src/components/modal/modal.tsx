@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ReactNode } from "react";
+import { Login } from "../googleAuth/Auth";
 
 const Overlay = styled.div`
   position: fixed;
@@ -52,6 +53,7 @@ export const Modal = ({ isOpen, children, onClose }: Props) => {
         <Container>
           <BotaoFechar onClick={onClose}>X</BotaoFechar>
           {children}
+          <Login />
         </Container>
       </Overlay>
     );
