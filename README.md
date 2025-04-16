@@ -16,3 +16,8 @@
 - **Banco de Dados**:  Firebase
 - **Hospedagem**:  Netlify
 
+## 💡 Desenvolvido por
+
+- [Davi "Zelchi" Lima](https://github.com/Zelchi)
+- [Victor "v." Guimarães](https://github.com/victorguimaraesdev)
+
