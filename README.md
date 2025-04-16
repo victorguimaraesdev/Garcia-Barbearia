@@ -12,7 +12,7 @@
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **Frontend**: React.js + Material UI
+- **Frontend**: React.js + Styled-Components
 - **Backend**: Node.Js + Express
 - **Banco de Dados**:  Firebase
 - **Hospedagem**:  Netlify
