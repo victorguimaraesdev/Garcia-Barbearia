@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { data } from "react-router-dom";
+import { Login } from "../../googleAuth/Auth";
 
 const Container = styled.div`
   display: flex;
@@ -18,28 +19,6 @@ const H1 = styled.h1`
     margin-bottom: 20px;
   }
 `;
-
-// const Campo = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   width: 100%;
-//   margin-bottom: 15px;
-// `;
-
-// const Titulo = styled.div`
-//   font-size: 0.9rem;
-//   margin-bottom: 5px;
-//   color: var(--primaria);
-// `;
-
-// const Input = styled.input`
-//   padding: 10px;
-//   border-radius: 8px;
-//   border: none;
-//   font-size: 1rem;
-//   background-color: rgba(255, 255, 255, 0.1);
-//   color: var(--primaria);
-// `;
 const Enviar = styled.button`
   margin-top: 20px;
   width: 150px;
@@ -97,6 +76,9 @@ const BotaoHorario = styled.button<{ $selecionado: boolean }>`
   cursor: pointer;
   min-width: 65px;
 `;
+const LoginGoole = styled.div`
+  margin-top: 20px;
+`;
 
 const nomesDias = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"];
 const nomesMes = [
@@ -145,7 +127,6 @@ export const FormularioCard = () => {
   const [horarioSelecionado, setHorarioSelecionado] = useState<string | null>(
     null
   );
-  // const [nome, setNome] = useState<string>("");
 
   useEffect(() => {
     const hoje = new Date();
@@ -168,26 +149,21 @@ export const FormularioCard = () => {
     };
     console.log(data);
     try {
-      const res = await axios.post("http://localhost:3000/agendamentos", dados);
+      const res = await axios.post(
+        "http://localhost:3000/api/agendamentos",
+        dados
+      );
       alert(res.data.mensagem || "Agendamento realizado com sucesso!");
     } catch (error) {
       console.error(error);
       alert("Erro ao agendar: " + error);
     }
   };
+  const [autorizado, setAutorizado] = useState(false);
 
   return (
     <Container>
-      <H1>Informe o nome a data e o horário do agendamento:</H1>
-
-      {/* <Campo>
-        <Titulo>Nome:</Titulo>
-        <Input
-          type="text"
-          value={nome}
-          onChange={(e) => setNome(e.target.value)}
-        />
-      </Campo> */}
+      <H1>Informe a data e o horário do agendamento:</H1>
       <ContainerDias>
         {dias.map((dia, i) => (
           <BotaoDia
@@ -212,7 +188,13 @@ export const FormularioCard = () => {
           </BotaoHorario>
         ))}
       </ContainerHorarios>
-      <Enviar onClick={EnviarParaAPI}> Agendar </Enviar>
+      {autorizado ? (
+        <Enviar onClick={EnviarParaAPI}> Agendar </Enviar>
+      ) : (
+        <LoginGoole>
+          <Login setAutorizado={setAutorizado} />
+        </LoginGoole>
+      )}
     </Container>
   );
 };

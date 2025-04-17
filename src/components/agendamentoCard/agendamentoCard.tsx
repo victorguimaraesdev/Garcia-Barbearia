@@ -131,7 +131,6 @@ const Botão = styled.button`
 
 export const AgendamentoCard = () => {
   const [openModal, setOpenModal] = useState(false);
-  // const [autorizado, setAutorizado] = useState(true);
   return (
     <Container>
       {Cards.map((_, i) => (
@@ -147,7 +146,6 @@ export const AgendamentoCard = () => {
         </Card>
       ))}
       <Modal isOpen={openModal} onClose={() => setOpenModal(false)}>
-        {/* {autorizado ? <FormularioCard /> : null} */}
         <FormularioCard />
       </Modal>
     </Container>
