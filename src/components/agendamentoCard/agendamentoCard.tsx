@@ -17,8 +17,8 @@ const KeyFrame = keyframes`
 
 const Container = styled.div`
   margin-top: 100px;
-  width: 100vw;
-  min-height: 100vh;
+  width: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -131,7 +131,7 @@ const Botão = styled.button`
 
 export const AgendamentoCard = () => {
   const [openModal, setOpenModal] = useState(false);
-
+  // const [autorizado, setAutorizado] = useState(true);
   return (
     <Container>
       {Cards.map((_, i) => (
@@ -147,6 +147,7 @@ export const AgendamentoCard = () => {
         </Card>
       ))}
       <Modal isOpen={openModal} onClose={() => setOpenModal(false)}>
+        {/* {autorizado ? <FormularioCard /> : null} */}
         <FormularioCard />
       </Modal>
     </Container>
