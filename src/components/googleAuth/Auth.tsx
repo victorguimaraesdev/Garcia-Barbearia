@@ -4,7 +4,7 @@ import syled from "styled-components";
 import { useState, useEffect } from "react";
 
 interface Props {
-  setAutorizado: (value: boolean) => void;
+    setAutorizado: (value: boolean) => void;
 }
 
 const GoogleButton = syled(GoogleLogin)`
@@ -15,48 +15,40 @@ const GoogleButton = syled(GoogleLogin)`
 `;
 
 export const Login = ({ setAutorizado }: Props) => {
-  const [teste, setTeste] = useState<CredentialResponse>({});
+    const [teste, setTeste] = useState<CredentialResponse | null>(null);
 
-  const EnviarCredenciais = async ({
-    credential,
-    clientId,
-  }: CredentialResponse) => {
-    console.log(credential, clientId);
-    if (!credential || !clientId) return;
-    console.log("hit");
-    try {
-      const { status, data } = await axios.post(
-        "http://localhost:3000/api/usuarios",
-        { credential, clientId }
-      );
+    const EnviarCredenciais = async ({ credential, clientId }: CredentialResponse) => {
+        if (!credential || !clientId) return;
 
-      if (status === 200) {
-        const token = data.authorization;
-        localStorage.setItem("token", token);
-        setAutorizado(true);
-      }
+        const { status, data } = await axios.post("http://localhost:3000/api/usuarios", { credential, clientId });
+        if (status === 200) {
+            const token = data.authorization;
+            localStorage.setItem("token", token);
+            axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+            setAutorizado(true);
+            return;
+        }
+        if (status === 401) {
+            localStorage.setItem("token", "");
+            setAutorizado(false);
+            return;
+        }
+    };
 
-      if (status === 401) {
-        alert(data.message);
-        setAutorizado(false);
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Erro ao logar: " + error);
-    }
-  };
-  useEffect(() => {
-    EnviarCredenciais(teste);
-    console.log(teste);
-  }, [teste]);
-  return (
-    <GoogleButton
-      onSuccess={(credentialResponse) => {
-        setTeste(credentialResponse);
-      }}
-      onError={() => {
-        console.log("Login Failed");
-      }}
-    />
-  );
+    useEffect(() => {
+        if (teste && teste.credential && teste.clientId) {
+            EnviarCredenciais(teste);
+        }
+    }, [teste]);
+
+    return (
+        <GoogleButton
+            onSuccess={(credentialResponse) => {
+                setTeste(credentialResponse);
+            }}
+            onError={() => {
+                console.log("Login Failed");
+            }}
+        />
+    );
 };

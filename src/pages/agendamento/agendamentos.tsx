@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Cards } from "../../utils/cardsHome";
 import { useBanner } from "../../context/useBanner";
 import { AgendamentoCard } from "../../components/agendamentoCard/agendamentoCard";
+import { verificarToken } from "../../utils/verificarToken";
 
 const Container = styled.div`
   position: relative;
@@ -10,6 +11,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 `;
 
 const Imagem = styled.img<{ $ativa: boolean }>`
@@ -23,6 +25,8 @@ const Imagem = styled.img<{ $ativa: boolean }>`
 `;
 
 export const Agendamentos = () => {
+  verificarToken();
+
   const { indexAtual } = useBanner();
 
   return (
