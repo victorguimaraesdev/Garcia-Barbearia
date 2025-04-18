@@ -172,8 +172,9 @@ export const FormularioCard = () => {
     axios
       .get("http://localhost:3000/api/agendamentos/dias")
       .then((res) => {
-        console.log(res.data.dias);
-        setDias(res.data.dias);
+        console.log("Resposta da API:", res.data);
+        console.log("Dias recebidos:", res.data.dias);
+        setDias(res.data);
       })
       .catch((err) => console.log(err));
   };
@@ -189,6 +190,7 @@ export const FormularioCard = () => {
     const dados = {
       dia: diaSelecionado,
       nome: nome,
+      horario: horarioSelecionado,
     };
     try {
       const res = await axios.post(
@@ -225,7 +227,7 @@ export const FormularioCard = () => {
         />
       </Campo>
       <ContainerDias>
-        {dias.map((dia, i) => (
+        {dias?.map((dia, i) => (
           <BotaoDia
             key={i}
             $selecionado={diaSelecionado === dia.dia}
