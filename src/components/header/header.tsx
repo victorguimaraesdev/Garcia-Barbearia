@@ -209,7 +209,7 @@ export const Header = () => {
           </li>
         </ul>
       </Direita>
-      <Logo src="/logo/logo.png" />
+      <Logo src="/logo/logo.png" draggable={false} />
     </Container>
   );
 };

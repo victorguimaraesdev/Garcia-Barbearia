@@ -6,6 +6,9 @@ export const GlobalStyle = createGlobalStyle`
        padding: 0;
        box-sizing: border-box;
        font-family: "Roboto", sans-serif;
+       user-select: none;
+        -webkit-tap-highlight-color: none;
+        -webkit-touch-callout: none;
    }
 
    :root {

@@ -28,7 +28,7 @@ export const Cursos = () => {
   return (
     <Container>
       {Cards.map((src, i) => (
-        <Imagem key={i} src={src.imagens} $ativa={i === indexAtual} />
+        <Imagem key={i} src={src.imagens} $ativa={i === indexAtual} draggable={false}/>
       ))}
     </Container>
   );

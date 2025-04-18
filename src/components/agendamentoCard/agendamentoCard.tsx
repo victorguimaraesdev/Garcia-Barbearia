@@ -136,7 +136,7 @@ export const AgendamentoCard = () => {
       {Cards.map((_, i) => (
         <Card key={i} delay={i * 0.2}>
           <ContainerInicio>
-            <Logo src="/logo/logo.png" />
+            <Logo src="/logo/logo.png" draggable={false} />
             <ContainerInformações>
               <Corte>{Cards[i].Corte}</Corte>
               <Valor>{Cards[i].Valor}</Valor>
