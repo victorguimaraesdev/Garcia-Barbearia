@@ -103,20 +103,21 @@ const LoginGoole = styled.div`
 `;
 
 const nomesDias = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"];
-const nomesMes = [
-  "Jan",
-  "Fev",
-  "Mar",
-  "Abr",
-  "Mai",
-  "Jun",
-  "Jul",
-  "Ago",
-  "Set",
-  "Out",
-  "Nov",
-  "Dez",
-];
+const nomesMes = {
+  "01": "Jan",
+  "02": "Fev",
+  "03": "Mar",
+  "04": "Abr",
+  "05": "Mai",
+  "06": "Jun",
+  "07": "Jul",
+  "08": "Ago",
+  "09": "Set",
+  "10": "Out",
+  "11": "Nov",
+  "12": "Dez",
+};
+
 const horarios = [
   "08:00",
   "08:30",
@@ -142,26 +143,42 @@ const horarios = [
   "18:30",
   "19:00",
 ];
+type Dias = {
+  dia: string;
+  data: string;
+};
 
 export const FormularioCard = () => {
-  const [dias, setDias] = useState<Date[]>([]);
+  const [dias, setDias] = useState<Dias[]>([]);
   const [diaSelecionado, setDiaSelecionado] = useState<Date | null>(null);
-  const [horarioSelecionado, setHorarioSelecionado] = useState<string | null>(
+  const [horarioSelecionado, setHorarioSelecionado] = useState<Dias | null>(
     null
   );
   const [nome, setNome] = useState("");
 
-  useEffect(() => {
-    const hoje = new Date();
-    const proximosDias: Date[] = [];
+  // useEffect(() => {
+  //   const hoje = new Date();
+  //   const proximosDias: Date[] = [];
 
-    for (let i = 0; i < 7; i++) {
-      const outroDia = new Date(hoje);
-      outroDia.setDate(hoje.getDate() + i);
-      proximosDias.push(outroDia);
-    }
-    setDias(proximosDias);
-  }, []);
+  //   for (let i = 0; i < 7; i++) {
+  //     const outroDia = new Date(hoje);
+  //     outroDia.setDate(hoje.getDate() + i);
+  //     proximosDias.push(outroDia);
+  //   }
+  //   setDias(proximosDias);
+  // }, []);
+
+  //GET AXIUS
+  const pegarInformacoes = () => {
+    axios
+      .get("http://localhost:3000/api/agendamentos/dias")
+      .then((res) => {
+        console.log(res.data.dias);
+        setDias(res.data.dias);
+      })
+      .catch((err) => console.log(err));
+  };
+  pegarInformacoes();
 
   const EnviarParaAPI = async () => {
     if (!diaSelecionado || !horarioSelecionado) {
@@ -189,6 +206,12 @@ export const FormularioCard = () => {
     if (localStorage.getItem("token")) setAutorizado(true);
   }, []);
 
+  const pegarMes = (dia: string) => {
+    const novoMes = nomesMes[dia];
+    console.log(novoMes);
+    return novoMes;
+  };
+
   return (
     <Container>
       <H1>Informe o nome a data e o horário do agendamento:</H1>
@@ -205,12 +228,12 @@ export const FormularioCard = () => {
         {dias.map((dia, i) => (
           <BotaoDia
             key={i}
-            $selecionado={diaSelecionado?.toDateString() === dia.toDateString()}
-            onClick={() => setDiaSelecionado(dia)}
+            $selecionado={diaSelecionado?.toDateString() === dia.dia}
+            onClick={() => setDiaSelecionado(dia.dia)}
           >
-            <DiaSemana>{nomesDias[dia.getDay()]}</DiaSemana>
-            <DiaData>{dia.getDate()}</DiaData>
-            <Mes>{nomesMes[dia.getMonth()]}</Mes>
+            <DiaSemana>{nomesDias[Number(dia.dia)]}</DiaSemana>
+            <DiaData>{dia.data.split("-")[2]}</DiaData>
+            <Mes>{pegarMes(dia.dia)}</Mes>
           </BotaoDia>
         ))}
       </ContainerDias>
