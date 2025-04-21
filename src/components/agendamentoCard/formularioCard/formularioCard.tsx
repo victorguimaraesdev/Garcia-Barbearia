@@ -9,15 +9,34 @@ const Container = styled.div`
   flex-direction: column;
   width: 75%;
   height: 80%;
+
+  @media (max-width: 768px) {
+    width: 90%;
+    height: auto;
+  }
+
+  @media (max-width: 480px) {
+    width: 95%;
+    padding: 10px;
+  }
 `;
+
 const H1 = styled.h1`
   margin-top: 15px;
   font-size: 18px;
   font-weight: 100;
+  text-align: center;
+
   @media (max-width: 768px) {
+    font-size: 16px;
     margin-bottom: 20px;
   }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
 `;
+
 const Campo = styled.div`
   display: flex;
   flex-direction: column;
@@ -29,6 +48,10 @@ const Titulo = styled.div`
   font-size: 0.9rem;
   margin-bottom: 5px;
   color: var(--primaria);
+
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const Input = styled.input`
@@ -38,6 +61,10 @@ const Input = styled.input`
   font-size: 1rem;
   background-color: rgba(255, 255, 255, 0.1);
   color: var(--primaria);
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const Enviar = styled.button`
@@ -47,13 +74,22 @@ const Enviar = styled.button`
   border-radius: 8px;
   border: none;
   cursor: pointer;
+  font-size: 1rem;
+
+  @media (max-width: 480px) {
+    width: 100%;
+    font-size: 0.9rem;
+  }
 `;
+
 const ContainerDias = styled.div`
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
   margin-top: 10px;
+  justify-content: center;
 `;
+
 const BotaoDia = styled.button<{ $selecionado: boolean }>`
   display: flex;
   justify-content: center;
@@ -63,26 +99,50 @@ const BotaoDia = styled.button<{ $selecionado: boolean }>`
   border-radius: 10px;
   background-color: ${({ $selecionado }) =>
     $selecionado ? "rgba(134, 134, 134, 0.726)" : "rgba(255, 255, 255, 0.1)"};
-  border: white;
+  border: none;
   cursor: pointer;
   min-width: 65px;
   color: white;
+  font-size: 0.8rem;
+
+  @media (max-width: 480px) {
+    min-width: 55px;
+    padding: 8px;
+  }
 `;
+
 const DiaSemana = styled.div`
   font-size: 10px;
+
+  @media (max-width: 480px) {
+    font-size: 9px;
+  }
 `;
+
 const DiaData = styled.div`
   font-size: 25px;
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+  }
 `;
+
 const Mes = styled.div`
   font-size: 10px;
+
+  @media (max-width: 480px) {
+    font-size: 9px;
+  }
 `;
+
 const ContainerHorarios = styled.div`
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
   margin-top: 20px;
+  justify-content: center;
 `;
+
 const BotaoHorario = styled.button<{
   $selecionado: boolean;
   $disponivel: boolean;
@@ -95,17 +155,26 @@ const BotaoHorario = styled.button<{
   border-radius: 10px;
   background-color: ${({ $selecionado }) =>
     $selecionado ? "rgba(134, 134, 134, 0.726)" : "rgba(255, 255, 255, 0.1)"};
-
   ${({ $disponivel }) =>
     $disponivel ? "" : "background-color: rgba(10, 10, 10, 0.4)"};
-
   color: white;
   border: none;
   cursor: pointer;
   min-width: 65px;
+  font-size: 0.9rem;
+
+  @media (max-width: 480px) {
+    min-width: 55px;
+    font-size: 0.8rem;
+  }
 `;
+
 const LoginGoole = styled.div`
   margin-top: 20px;
+
+  @media (max-width: 480px) {
+    width: 100%;
+  }
 `;
 
 const nomesDias = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"];
