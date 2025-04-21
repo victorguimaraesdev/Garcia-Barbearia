@@ -93,7 +93,7 @@ const BotaoHorario = styled.button<{ $selecionado: boolean }>`
   background-color: ${({ $selecionado }) =>
     $selecionado ? "rgba(134, 134, 134, 0.726)" : "rgba(255, 255, 255, 0.1)"};
   color: white;
-  border: white;
+  border: none;
   cursor: pointer;
   min-width: 65px;
 `;
@@ -164,15 +164,16 @@ export const FormularioCard = () => {
       alert("Por favor, preencha todos os campos antes de agendar.");
       return;
     }
-    const data = {
-      dia: diaSelecionado,
+    const date = {
       nome: nome,
-      horario: horarioSelecionado,
+      dia: diaSelecionado,
+      horario: horarioSelecionado?.hora,
     };
+    console.log("Enviando para API:", date);
     try {
       const res = await axios.post(
         "http://localhost:3000/api/agendamentos",
-        data
+        date
       );
       alert(res.data.mensagem || "Agendamento realizado com sucesso!");
     } catch (error) {
