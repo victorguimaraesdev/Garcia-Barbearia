@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { Login } from "../../googleAuth/Auth";
@@ -117,77 +117,54 @@ const nomesMes = {
   "12": "Dez",
 };
 
-const horarios = [
-  "08:00",
-  "08:30",
-  "09:00",
-  "09:30",
-  "10:00",
-  "10:30",
-  "11:00",
-  "11:30",
-  "12:00",
-  "12:30",
-  "13:00",
-  "13:30",
-  "14:00",
-  "14:30",
-  "15:00",
-  "15:30",
-  "16:00",
-  "16:30",
-  "17:00",
-  "17:30",
-  "18:00",
-  "18:30",
-  "19:00",
-];
 type Dias = {
   dia: string;
   data: string;
 };
+type Horarios = {
+  hora: string;
+  Disponivel: boolean;
+};
 
 export const FormularioCard = () => {
   const [dias, setDias] = useState<Dias[]>([]);
+  const [horario, setHorario] = useState<Horarios[]>([]);
   const [diaSelecionado, setDiaSelecionado] = useState<string | null>(null);
-  const [horarioSelecionado, setHorarioSelecionado] = useState<string | null>(
+  const [horarioSelecionado, setHorarioSelecionado] = useState<Horarios | null>(
     null
   );
   const [nome, setNome] = useState("");
 
-  // useEffect(() => {
-  //   const hoje = new Date();
-  //   const proximosDias: Date[] = [];
-
-  //   for (let i = 0; i < 7; i++) {
-  //     const outroDia = new Date(hoje);
-  //     outroDia.setDate(hoje.getDate() + i);
-  //     proximosDias.push(outroDia);
-  //   }
-  //   setDias(proximosDias);
-  // }, []);
-
   //GET AXIUS
-  const pegarInformacoes = () => {
+  const pegarInformacoes = useCallback(() => {
     axios
       .get("http://localhost:3000/api/agendamentos/dias")
       .then((res) => {
-        console.log("Resposta da API:", res.data);
-        console.log("Dias recebidos:", res.data.dias);
         setDias(res.data);
       })
       .catch((err) => console.log(err));
-  };
+
+    axios
+      .get("http://localhost:3000/api/agendamentos/horarios", {
+        params: { data: diaSelecionado },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setHorario(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, [diaSelecionado]);
 
   useEffect(() => {
     pegarInformacoes();
-  }, []);
+  }, [pegarInformacoes]);
 
   const EnviarParaAPI = async () => {
     if (!diaSelecionado || !horarioSelecionado) {
+      alert("Por favor, preencha todos os campos antes de agendar.");
       return;
     }
-    const dados = {
+    const data = {
       dia: diaSelecionado,
       nome: nome,
       horario: horarioSelecionado,
@@ -195,7 +172,7 @@ export const FormularioCard = () => {
     try {
       const res = await axios.post(
         "http://localhost:3000/api/agendamentos",
-        dados
+        data
       );
       alert(res.data.mensagem || "Agendamento realizado com sucesso!");
     } catch (error) {
@@ -230,23 +207,23 @@ export const FormularioCard = () => {
         {dias?.map((dia, i) => (
           <BotaoDia
             key={i}
-            $selecionado={diaSelecionado === dia.dia}
-            onClick={() => setDiaSelecionado(dia.dia)}
+            $selecionado={diaSelecionado === dia.data}
+            onClick={() => setDiaSelecionado(dia.data)}
           >
             <DiaSemana>{nomesDias[Number(dia.dia)]}</DiaSemana>
             <DiaData>{dia.data.split("-")[2]}</DiaData>
-            <Mes>{pegarMes(dia.dia)}</Mes>
+            <Mes>{pegarMes(dia.data)}</Mes>
           </BotaoDia>
         ))}
       </ContainerDias>
       <ContainerHorarios>
-        {horarios.map((horario, i) => (
+        {horario.map((horario, i) => (
           <BotaoHorario
             key={i}
             $selecionado={horarioSelecionado === horario}
             onClick={() => setHorarioSelecionado(horario)}
           >
-            {horario}
+            {horario.hora}
           </BotaoHorario>
         ))}
       </ContainerHorarios>
