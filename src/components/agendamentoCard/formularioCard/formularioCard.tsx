@@ -83,7 +83,10 @@ const ContainerHorarios = styled.div`
   flex-wrap: wrap;
   margin-top: 20px;
 `;
-const BotaoHorario = styled.button<{ $selecionado: boolean }>`
+const BotaoHorario = styled.button<{
+  $selecionado: boolean;
+  $disponivel: boolean;
+}>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -92,6 +95,10 @@ const BotaoHorario = styled.button<{ $selecionado: boolean }>`
   border-radius: 10px;
   background-color: ${({ $selecionado }) =>
     $selecionado ? "rgba(134, 134, 134, 0.726)" : "rgba(255, 255, 255, 0.1)"};
+
+  ${({ $disponivel }) =>
+    $disponivel ? "" : "background-color: rgba(10, 10, 10, 0.4)"};
+
   color: white;
   border: none;
   cursor: pointer;
@@ -123,7 +130,7 @@ type Dias = {
 };
 type Horarios = {
   hora: string;
-  Disponivel: boolean;
+  disponivel: boolean;
 };
 
 export const FormularioCard = () => {
@@ -144,12 +151,13 @@ export const FormularioCard = () => {
       })
       .catch((err) => console.log(err));
 
+    if (!diaSelecionado) return;
+
     axios
       .get("http://localhost:3000/api/agendamentos/horarios", {
         params: { data: diaSelecionado },
       })
       .then((res) => {
-        console.log(res.data);
         setHorario(res.data);
       })
       .catch((err) => console.log(err));
@@ -164,12 +172,13 @@ export const FormularioCard = () => {
       alert("Por favor, preencha todos os campos antes de agendar.");
       return;
     }
+    const concatenado = `${diaSelecionado}T${horarioSelecionado?.hora}:00`;
+
     const date = {
       nome: nome,
-      dia: diaSelecionado,
-      horario: horarioSelecionado?.hora,
+      date: concatenado,
     };
-    console.log("Enviando para API:", date);
+
     try {
       const res = await axios.post(
         "http://localhost:3000/api/agendamentos",
@@ -223,6 +232,7 @@ export const FormularioCard = () => {
             key={i}
             $selecionado={horarioSelecionado === horario}
             onClick={() => setHorarioSelecionado(horario)}
+            $disponivel={horario.disponivel}
           >
             {horario.hora}
           </BotaoHorario>
