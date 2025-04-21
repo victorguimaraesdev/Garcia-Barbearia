@@ -36,7 +36,7 @@ const Container = styled.div`
   }
 `;
 
-const Card = styled.div<{ delay: number }>`
+const Card = styled.div<{ $delay: number }>`
   width: 60%;
   min-height: 100px;
   display: flex;
@@ -51,7 +51,7 @@ const Card = styled.div<{ delay: number }>`
   border-radius: 10px;
   z-index: 1;
   animation: ${KeyFrame} 0.6s ease forwards;
-  animation-delay: ${(props) => props.delay}s;
+  animation-delay: ${(props) => props.$delay}s;
   opacity: 0;
 
   @media (max-width: 1024px) {
@@ -134,7 +134,7 @@ export const AgendamentoCard = () => {
   return (
     <Container>
       {Cards.map((_, i) => (
-        <Card key={i} delay={i * 0.2}>
+        <Card key={i} $delay={i * 0.2}>
           <ContainerInicio>
             <Logo src="/logo/logo.png" draggable={false} />
             <ContainerInformações>
