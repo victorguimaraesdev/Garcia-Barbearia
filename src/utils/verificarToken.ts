@@ -2,9 +2,9 @@ import axios from "axios";
 
 export const verificarToken = async () => {
     const token = localStorage.getItem("token");
+    console.log(token);
     if (token) {
-        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
+        axios.defaults.headers.common["authorization"] = `Bearer ${token}`;
         try {
             const { status } = await axios.post("http://localhost:3000/api/usuarios", Headers)
 
