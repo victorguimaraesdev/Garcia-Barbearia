@@ -1,18 +1,10 @@
 import { GoogleLogin, CredentialResponse } from "@react-oauth/google";
 import axios from "axios";
-import syled from "styled-components";
 import { useState, useEffect } from "react";
 
 interface Props {
     setAutorizado: (value: boolean) => void;
 }
-
-const GoogleButton = syled(GoogleLogin)`
-    height: 50px;
-    width: 200px;
-    position: absolute;
-    z-index: 1000;
-`;
 
 export const Login = ({ setAutorizado }: Props) => {
     const [teste, setTeste] = useState<CredentialResponse | null>(null);
@@ -42,7 +34,7 @@ export const Login = ({ setAutorizado }: Props) => {
     }, [teste]);
 
     return (
-        <GoogleButton
+        <GoogleLogin
             onSuccess={(credentialResponse) => {
                 setTeste(credentialResponse);
             }}
