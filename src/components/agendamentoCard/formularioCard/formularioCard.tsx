@@ -99,7 +99,7 @@ const BotaoDia = styled.button<{ $selecionado: boolean }>`
   padding: 10px;
   border-radius: 10px;
   background-color: ${({ $selecionado }) =>
-    $selecionado ? "rgba(134, 134, 134, 0.726)" : "rgba(255, 255, 255, 0.1)"};
+        $selecionado ? "rgba(134, 134, 134, 0.726)" : "rgba(255, 255, 255, 0.1)"};
   border: none;
   cursor: pointer;
   min-width: 65px;
@@ -145,8 +145,8 @@ const ContainerHorarios = styled.div`
 `;
 
 const BotaoHorario = styled.button<{
-  $selecionado: boolean;
-  $disponivel: boolean;
+    $selecionado: boolean;
+    $disponivel: boolean;
 }>`
   display: flex;
   justify-content: center;
@@ -155,9 +155,9 @@ const BotaoHorario = styled.button<{
   padding: 10px;
   border-radius: 10px;
   background-color: ${({ $selecionado }) =>
-    $selecionado ? "rgba(134, 134, 134, 0.726)" : "rgba(255, 255, 255, 0.1)"};
+        $selecionado ? "rgba(134, 134, 134, 0.726)" : "rgba(255, 255, 255, 0.1)"};
   ${({ $disponivel }) =>
-    $disponivel ? "" : "background-color: rgba(10, 10, 10, 0.4)"};
+        $disponivel ? "" : "background-color: rgba(10, 10, 10, 0.4)"};
   color: white;
   border: none;
   cursor: pointer;
@@ -172,149 +172,145 @@ const BotaoHorario = styled.button<{
 
 const LoginGoole = styled.div`
   margin-top: 20px;
-
-  @media (max-width: 480px) {
-    width: 100%;
-  }
 `;
 
 const nomesDias = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"];
 const nomesMes = {
-  "01": "Jan",
-  "02": "Fev",
-  "03": "Mar",
-  "04": "Abr",
-  "05": "Mai",
-  "06": "Jun",
-  "07": "Jul",
-  "08": "Ago",
-  "09": "Set",
-  "10": "Out",
-  "11": "Nov",
-  "12": "Dez",
+    "01": "Jan",
+    "02": "Fev",
+    "03": "Mar",
+    "04": "Abr",
+    "05": "Mai",
+    "06": "Jun",
+    "07": "Jul",
+    "08": "Ago",
+    "09": "Set",
+    "10": "Out",
+    "11": "Nov",
+    "12": "Dez",
 };
 
 type Dias = {
-  dia: string;
-  data: string;
+    dia: string;
+    data: string;
 };
 type Horarios = {
-  hora: string;
-  disponivel: boolean;
+    hora: string;
+    disponivel: boolean;
 };
 
 export const FormularioCard = () => {
-  const [dias, setDias] = useState<Dias[]>([]);
-  const [horario, setHorario] = useState<Horarios[]>([]);
-  const [diaSelecionado, setDiaSelecionado] = useState<string | null>(null);
-  const [horarioSelecionado, setHorarioSelecionado] = useState<Horarios | null>(
-    null
-  );
-  const [nome, setNome] = useState("");
+    const [dias, setDias] = useState<Dias[]>([]);
+    const [horario, setHorario] = useState<Horarios[]>([]);
+    const [diaSelecionado, setDiaSelecionado] = useState<string | null>(null);
+    const [horarioSelecionado, setHorarioSelecionado] = useState<Horarios | null>(
+        null
+    );
+    const [nome, setNome] = useState("");
 
-  //GET AXIUS
-  const pegarInformacoes = useCallback(() => {
-    axios
-      .get("http://localhost:3000/api/agendamentos/dias")
-      .then((res) => {
-        setDias(res.data);
-      })
-      .catch((err) => console.log(err));
+    //GET AXIUS
+    const pegarInformacoes = useCallback(() => {
+        axios
+            .get("http://localhost:3000/api/agendamentos/dias")
+            .then((res) => {
+                setDias(res.data);
+            })
+            .catch((err) => console.log(err));
 
-    if (!diaSelecionado) return;
+        if (!diaSelecionado) return;
 
-    axios
-      .get("http://localhost:3000/api/agendamentos/horarios", {
-        params: { data: diaSelecionado },
-      })
-      .then((res) => {
-        setHorario(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, [diaSelecionado]);
+        axios
+            .get("http://localhost:3000/api/agendamentos/horarios", {
+                params: { data: diaSelecionado },
+            })
+            .then((res) => {
+                setHorario(res.data);
+            })
+            .catch((err) => console.log(err));
+    }, [diaSelecionado]);
 
-  useEffect(() => {
-    pegarInformacoes();
-  }, [pegarInformacoes]);
+    useEffect(() => {
+        pegarInformacoes();
+    }, [pegarInformacoes]);
 
-  const EnviarParaAPI = async () => {
-    if (!diaSelecionado || !horarioSelecionado) {
-      alert("Por favor, preencha todos os campos antes de agendar.");
-      return;
-    }
-    const concatenado = `${diaSelecionado}T${horarioSelecionado?.hora}:00`;
+    const EnviarParaAPI = async () => {
+        if (!diaSelecionado || !horarioSelecionado) {
+            alert("Por favor, preencha todos os campos antes de agendar.");
+            return;
+        }
+        const concatenado = `${diaSelecionado}T${horarioSelecionado?.hora}:00`;
 
-    const date = {
-      nome: nome,
-      date: concatenado,
+        const date = {
+            nome: nome,
+            date: concatenado,
+        };
+
+        try {
+            const res = await axios.post(
+                "http://localhost:3000/api/agendamentos",
+                date
+            );
+            alert(res.data.mensagem || "Agendamento realizado com sucesso!");
+        } catch (error) {
+            console.error(error);
+            alert("Erro ao agendar: " + error);
+        }
     };
 
-    try {
-      const res = await axios.post(
-        "http://localhost:3000/api/agendamentos",
-        date
-      );
-      alert(res.data.mensagem || "Agendamento realizado com sucesso!");
-    } catch (error) {
-      console.error(error);
-      alert("Erro ao agendar: " + error);
-    }
-  };
+    const [autorizado, setAutorizado] = useState(false);
+    useEffect(() => {
+        if (localStorage.getItem("token")) setAutorizado(true);
+    }, []);
 
-  const [autorizado, setAutorizado] = useState(false);
-  useEffect(() => {
-    if (localStorage.getItem("token")) setAutorizado(true);
-  }, []);
+    const pegarMes = (dia: string) => {
+        const mes = dia.split("-")[1];
+        return nomesMes[mes as keyof typeof nomesMes];
+    };
 
-  const pegarMes = (dia: string) => {
-    const mes = dia.split("-")[1];
-    return nomesMes[mes as keyof typeof nomesMes];
-  };
-
-  return (
-    <Container>
-      <H1>Informe o nome a data e o horário do agendamento:</H1>
-      <Campo>
-        <Titulo>Nome:</Titulo>
-        <Input
-          type="text"
-          placeholder="Digite o seu nome"
-          value={nome}
-          onChange={(e) => setNome(e.target.value)}
-        />
-      </Campo>
-      <ContainerDias>
-        {dias?.map((dia, i) => (
-          <BotaoDia
-            key={i}
-            $selecionado={diaSelecionado === dia.data}
-            onClick={() => setDiaSelecionado(dia.data)}
-          >
-            <DiaSemana>{nomesDias[Number(dia.dia)]}</DiaSemana>
-            <DiaData>{dia.data.split("-")[2]}</DiaData>
-            <Mes>{pegarMes(dia.data)}</Mes>
-          </BotaoDia>
-        ))}
-      </ContainerDias>
-      <ContainerHorarios>
-        {horario.map((horario, i) => (
-          <BotaoHorario
-            key={i}
-            $selecionado={horarioSelecionado === horario}
-            onClick={() => setHorarioSelecionado(horario)}
-            $disponivel={horario.disponivel}
-          >
-            {horario.hora}
-          </BotaoHorario>
-        ))}
-      </ContainerHorarios>
-      {autorizado ? (
-        <Enviar onClick={EnviarParaAPI}> Agendar </Enviar>
-      ) : (
-        <LoginGoole>
-          <Login setAutorizado={setAutorizado} />
-        </LoginGoole>
-      )}
-    </Container>
-  );
+    return (
+        <Container>
+            <H1>Informe o nome a data e o horário do agendamento:</H1>
+            <Campo>
+                <Titulo>Nome:</Titulo>
+                <Input
+                    type="text"
+                    placeholder="Digite o seu nome"
+                    value={nome}
+                    onChange={(e) => setNome(e.target.value)}
+                />
+            </Campo>
+            <ContainerDias>
+                {dias?.map((dia, i) => (
+                    <BotaoDia
+                        key={i}
+                        $selecionado={diaSelecionado === dia.data}
+                        onClick={() => setDiaSelecionado(dia.data)}
+                    >
+                        <DiaSemana>{nomesDias[Number(dia.dia)]}</DiaSemana>
+                        <DiaData>{dia.data.split("-")[2]}</DiaData>
+                        <Mes>{pegarMes(dia.data)}</Mes>
+                    </BotaoDia>
+                ))}
+            </ContainerDias>
+            <ContainerHorarios>
+                {horario.map((horario, i) => (
+                    <BotaoHorario
+                        key={i}
+                        $selecionado={horarioSelecionado === horario}
+                        onClick={() => setHorarioSelecionado(horario)}
+                        $disponivel={horario.disponivel}
+                    >
+                        {horario.hora}
+                    </BotaoHorario>
+                ))}
+            </ContainerHorarios>
+            {autorizado ? (
+                <Enviar onClick={EnviarParaAPI}> Agendar </Enviar>
+            ) : (
+                <LoginGoole>
+                    <Login setAutorizado={setAutorizado} />
+                </LoginGoole>
+            )}
+        </Container>
+    );
 };
