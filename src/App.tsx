@@ -6,10 +6,11 @@ import { Cursos } from "./pages/cursos/cursos.tsx";
 import { Routes, Route } from "react-router-dom";
 import { BannerProvider } from "./context/BannerProvider";
 import { verificarToken } from "./utils/verificarToken.ts";
+import { useEffect } from "react";
 
 function App() {
 
-    verificarToken();
+    useEffect(() => { verificarToken() }, []);
 
     return (
         <>

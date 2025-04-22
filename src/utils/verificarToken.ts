@@ -2,7 +2,6 @@ import axios from "axios";
 
 export const verificarToken = async () => {
     const token = localStorage.getItem("token");
-    console.log(token);
     if (token) {
         axios.defaults.headers.common["authorization"] = `Bearer ${token}`;
         try {
