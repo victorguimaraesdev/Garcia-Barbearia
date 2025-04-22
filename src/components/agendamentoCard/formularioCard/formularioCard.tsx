@@ -6,6 +6,7 @@ import { Login } from "../../googleAuth/Auth";
 const Container = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   width: 75%;
   height: 80%;
