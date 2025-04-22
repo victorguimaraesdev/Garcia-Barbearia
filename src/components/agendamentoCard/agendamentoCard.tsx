@@ -146,7 +146,7 @@ export const AgendamentoCard = () => {
         </Card>
       ))}
       <Modal isOpen={openModal} onClose={() => setOpenModal(false)}>
-        <FormularioCard />
+        <FormularioCard onAgendamentoSucesso={() => setOpenModal(false)} />
       </Modal>
     </Container>
   );
