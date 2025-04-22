@@ -24,12 +24,13 @@ const Imagem = styled.img<{ $ativa: boolean }>`
 `;
 
 export const Agendamentos = () => {
+
   const { indexAtual } = useBanner();
 
   return (
     <Container>
       {Cards.map((src, i) => (
-        <Imagem key={i} src={src.imagens} $ativa={i === indexAtual} />
+        <Imagem key={i} src={src.imagens} $ativa={i === indexAtual} draggable={false}/>
       ))}
       <AgendamentoCard />
     </Container>

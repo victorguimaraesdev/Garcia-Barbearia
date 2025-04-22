@@ -148,14 +148,14 @@ export const Banner = () => {
       <ArrowLeft onClick={() => trocarImagem("Anterior")} />
       <ArrowRight onClick={() => trocarImagem("Proxima")} />
       {Cards.map((src, i) => (
-        <Imagem key={i} src={src.imagens} $ativa={i === indexAtual} />
+        <Imagem key={i} src={src.imagens} $ativa={i === indexAtual} draggable={false} />
       ))}
       {Cards.map((_, i) => (
         <Bolinha key={i} $selecionado={i === indexAtual} />
       ))}
       <PseudoCard>
         {Cards.map((src, i) => (
-          <Icone key={i} src={src.icones} $ativo={i === indexAtual} />
+          <Icone key={i} src={src.icones} $ativo={i === indexAtual} draggable={false} />
         ))}
         {Cards.map(({ titulo }, i) => (
           <H1 key={i} $ativo={i === indexAtual}>

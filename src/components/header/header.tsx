@@ -35,7 +35,7 @@ const Logo = styled.img`
   }
 `;
 
-const Esquerda = styled.div<{ isOpen: boolean }>`
+const Esquerda = styled.div<{ $isOpen: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -85,7 +85,7 @@ const Esquerda = styled.div<{ isOpen: boolean }>`
     @media (max-width: 768px) {
       flex-direction: column;
       gap: 10px;
-      display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
+      display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
 
       li a {
         font-size: 0.9rem;
@@ -128,7 +128,7 @@ const Link = styled(Link2)`
     opacity: 1;
   }
 `;
-const Direita = styled.div<{ isOpen: boolean }>`
+const Direita = styled.div<{ $isOpen: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -146,7 +146,7 @@ const Direita = styled.div<{ isOpen: boolean }>`
     @media (max-width: 768px) {
       flex-direction: column;
       gap: 10px;
-      display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
+      display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
 
       li a {
         font-size: 0.9rem;
@@ -186,30 +186,30 @@ export const Header = () => {
         {menuOpen ? <FiX /> : <FiMenu />}
       </MenuToggle>
 
-      <Esquerda isOpen={menuOpen}>
+      <Esquerda $isOpen={menuOpen}>
         <ul>
           <li>
-            <Link to={"/"}>Home</Link>
+            <Link to={"/"} onClick={() => setMenuOpen(false)}>Home</Link>
           </li>
           <li>
-            <Link to={"/cursos"}>Cursos</Link>
+            <Link to={"/cursos"} onClick={() => setMenuOpen(false)}>Cursos</Link>
           </li>
         </ul>
       </Esquerda>
 
-      <Direita isOpen={menuOpen}>
+      <Direita $isOpen={menuOpen}>
         <ul>
           <li>
             <div>
-              <Link to="/agendamentos"> Agendamentos </Link>
+              <Link to="/agendamentos" onClick={() => setMenuOpen(false)}> Agendamentos </Link>
             </div>
           </li>
           <li>
-            <Link to="/produtos">Produtos</Link>
+            <Link to="/produtos" onClick={() => setMenuOpen(false)}>Produtos</Link>
           </li>
         </ul>
       </Direita>
-      <Logo src="/logo/logo.png" />
+      <Logo src="/logo/logo.png" draggable={false} />
     </Container>
   );
 };

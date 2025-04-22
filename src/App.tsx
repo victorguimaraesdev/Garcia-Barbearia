@@ -5,22 +5,27 @@ import { Produtos } from "./pages/produtos/produtos.tsx";
 import { Cursos } from "./pages/cursos/cursos.tsx";
 import { Routes, Route } from "react-router-dom";
 import { BannerProvider } from "./context/BannerProvider";
+import { verificarToken } from "./utils/verificarToken.ts";
+import { useEffect } from "react";
 
 function App() {
-  return (
-    <>
-      <Header />
-      <BannerProvider>
-        <Routes>
-          <Route path="*" element={<Home />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/agendamentos" element={<Agendamentos />} />
-          <Route path="/produtos" element={<Produtos />} />
-          <Route path="/cursos" element={<Cursos />} />
-        </Routes>
-      </BannerProvider>
-    </>
-  );
+
+    useEffect(() => { verificarToken() }, []);
+
+    return (
+        <>
+            <Header />
+            <BannerProvider>
+                <Routes>
+                    <Route path="*" element={<Home />} />
+                    <Route path="/" element={<Home />} />
+                    <Route path="/agendamentos" element={<Agendamentos />} />
+                    <Route path="/produtos" element={<Produtos />} />
+                    <Route path="/cursos" element={<Cursos />} />
+                </Routes>
+            </BannerProvider>
+        </>
+    );
 }
 
 export default App;
