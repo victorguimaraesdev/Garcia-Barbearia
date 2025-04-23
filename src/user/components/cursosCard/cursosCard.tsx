@@ -82,9 +82,6 @@ const SubCard = styled.div`
   z-index: 1;
   gap: 7px;
   transition: 0.3s ease-in-out;
-  &:hover {
-    scale: 1.05;
-  }
 
 `;
 const Icone = styled.img`
@@ -124,8 +121,17 @@ const ContainerBotaoCard = styled.div`
   height: 50px;
   /* border: 2px solid red; */
 `
+const BotaoLink = styled.a`
+  width: 100%;
+  height: 40px;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const CursosCard = () => {
+
   return (
     <Container>
       <Card>
@@ -151,7 +157,9 @@ export const CursosCard = () => {
             ))}
           </ContainerSubCards>
           <ContainerBotaoCard >
+          <BotaoLink href="https://api.whatsapp.com/send?phone=5515997316945" target="_blank">
           <BotaoCard>Contato</BotaoCard>
+            </BotaoLink>
           </ContainerBotaoCard >
         </InformacoesCard>
        
