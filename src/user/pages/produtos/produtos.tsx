@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { Cards } from "../../utils/cardsHome";
+import { Cards } from "../../../utils/cardsHome";
 import { useBanner } from "../../context/useBanner";
-import { CursosCard } from "../../components/cursosCard/cursosCard";
 
 const Container = styled.div`
   position: relative;
@@ -23,20 +22,14 @@ const Imagem = styled.img<{ $ativa: boolean }>`
   z-index: 0;
 `;
 
-export const Cursos = () => {
+export const Produtos = () => {
   const { indexAtual } = useBanner();
 
   return (
     <Container>
       {Cards.map((src, i) => (
-        <Imagem
-          key={i}
-          src={src.imagens}
-          $ativa={i === indexAtual}
-          draggable={false}
-        />
+        <Imagem key={i} src={src.imagens} $ativa={i === indexAtual} draggable={false}/>
       ))}
-      <CursosCard />
     </Container>
   );
 };

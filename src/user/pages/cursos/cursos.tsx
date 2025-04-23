@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { Cards } from "../../utils/cardsHome";
+import { Cards } from "../../../utils/cardsHome";
 import { useBanner } from "../../context/useBanner";
-import { AgendamentoCard } from "../../components/agendamentoCard/agendamentoCard";
+import { CursosCard } from "../../components/cursosCard/cursosCard";
 
 const Container = styled.div`
   position: relative;
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,16 +23,20 @@ const Imagem = styled.img<{ $ativa: boolean }>`
   z-index: 0;
 `;
 
-export const Agendamentos = () => {
-
+export const Cursos = () => {
   const { indexAtual } = useBanner();
 
   return (
     <Container>
       {Cards.map((src, i) => (
-        <Imagem key={i} src={src.imagens} $ativa={i === indexAtual} draggable={false}/>
+        <Imagem
+          key={i}
+          src={src.imagens}
+          $ativa={i === indexAtual}
+          draggable={false}
+        />
       ))}
-      <AgendamentoCard />
+      <CursosCard />
     </Container>
   );
 };

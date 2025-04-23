@@ -201,7 +201,7 @@ export const Header = () => {
             <Link
               to="/"
               onClick={() => setMenuOpen(false)}
-              className={location.pathname === "/" ? "naRota" : ""}
+              className={location.pathname === "/home" ? "naRota" : ""}
             >
               Home
             </Link>

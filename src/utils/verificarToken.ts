@@ -1,6 +1,10 @@
 import axios from "axios";
 
-export const verificarToken = async () => {
+interface TokenStates {
+    setApp: (app: boolean) => void;
+}
+
+export const verificarToken = async ({ setApp }: TokenStates) => {
     const token = localStorage.getItem("token");
     if (token) {
         axios.defaults.headers.common["authorization"] = `Bearer ${token}`;
@@ -9,6 +13,13 @@ export const verificarToken = async () => {
 
             if (status === 200) {
                 localStorage.setItem("token", token);
+                setApp(true);
+                return;
+            }
+
+            if (status === 202) {
+                localStorage.setItem("token", token);
+                setApp(false);
                 return;
             }
 
