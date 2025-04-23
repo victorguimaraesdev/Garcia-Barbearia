@@ -119,10 +119,11 @@ const Botão = styled.button`
   width: 100px;
   height: 30px;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.9);
-  color: var(--contraste);
+  background-color: rgb(51, 51, 51);
+  color: var(--primaria);
   border: none;
   cursor: pointer;
+  z-index: 2;
 
   @media (max-width: 768px) {
     width: 30%;
