@@ -12,7 +12,7 @@ export const Login = ({ setAutorizado }: Props) => {
     const EnviarCredenciais = async ({ credential, clientId }: CredentialResponse) => {
         if (!credential || !clientId) return;
 
-        const { status, data } = await axios.post("http://localhost:3000/api/usuarios", { credential, clientId });
+        const { status, data } = await axios.post("http://localhost:3000/api/usuarios", { credential, clientId, role: "2" });
         if (status === 200) {
             const token = data.authorization;
             localStorage.setItem("token", token);

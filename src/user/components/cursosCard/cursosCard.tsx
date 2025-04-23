@@ -1,5 +1,17 @@
+import { keyframes } from "styled-components";
 import styled from "styled-components";
-import { SubCardList } from "../../utils/subCardsCursos";
+import { SubCardList } from "../../../utils/subCardsCursos";
+
+const KeyFrame = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(200px);
+  }
+  100% {
+    opacity: 0.9;
+    transform: translateY(0px);
+  }
+`;
 
 const Container = styled.div`
   display: flex;
@@ -13,13 +25,14 @@ const Card = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   width: 70%;
-  height: 65%;
+  height: 70%;
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 1;
   gap: 20px;
+  opacity: 0;
+  animation: ${KeyFrame} 1s ease-in-out forwards; ;
 `;
 const ImagemCard = styled.img`
   width: 50%;
@@ -33,12 +46,15 @@ const InformacoesCard = styled.div`
   flex-direction: column;
   width: 50%;
   height: 100%;
-  gap: 5px;
+  gap: 10px;
   flex-wrap: wrap;
 `;
 const TituloCard = styled.h1`
   display: flex;
+  /* align-items: center;
+  justify-content: center; */
   font-size: 1.5rem;
+  font-weight: 450;
 `;
 const ParagrafoCard = styled.p`
   display: flex;
@@ -47,23 +63,28 @@ const ParagrafoCard = styled.p`
 `;
 const ContainerSubCards = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
   width: 100%;
-  height: 70px;
+  height: auto;
   gap: 10px;
   /* border: 2px solid var(--secundaria); */
+  flex-wrap: wrap;
 `;
 const SubCard = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%;
+  width: 48%;
   height: 50px;
   border-radius: 20px;
   background-color: rgba(51, 51, 51, 0.7);
   z-index: 1;
   gap: 7px;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    scale: 1.05;
+  }
 
 `;
 const Icone = styled.img`
@@ -87,7 +108,22 @@ const BotaoCard = styled.button`
   z-index: 1;
   color: var(--primaria);
   border: none;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(83, 83, 83, 0.7) ;
+  }
   `;
+const ContainerBotaoCard = styled.div`
+  display: flex;
+  position: relative;
+  /* bottom: -50px; */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  /* border: 2px solid red; */
+`
 
 export const CursosCard = () => {
   return (
@@ -114,9 +150,9 @@ export const CursosCard = () => {
               </SubCard>
             ))}
           </ContainerSubCards>
-          <ContainerSubCards>
-          <BotaoCard>Inscreva-se</BotaoCard>
-          </ContainerSubCards>
+          <ContainerBotaoCard >
+          <BotaoCard>Contato</BotaoCard>
+          </ContainerBotaoCard >
         </InformacoesCard>
        
       </Card>

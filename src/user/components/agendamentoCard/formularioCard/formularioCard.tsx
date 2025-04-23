@@ -148,7 +148,7 @@ const Sucesso = styled.div`
   margin-top: 20px;
   padding: 15px 20px;
   border-radius: 10px;
-  color: var(--secundaria);
+  color: var(--primaria);
   font-size: 1rem;
   text-align: center;
   max-width: 300px;
@@ -275,11 +275,16 @@ export const FormularioCard = ({ onAgendamentoSucesso }: Props) => {
         "http://localhost:3000/api/agendamentos",
         date
       );
-      setMenssagem(res.data.mensagem || "Agendamento realizado com sucesso!");
-      setTimeout(() => {
-        setMenssagem("");
-        onAgendamentoSucesso();
-      }, 2000);
+      if (res.status === 201) {
+        setMenssagem("Agendamento realizado com sucesso!");
+        setTimeout(() => {
+          setMenssagem("");
+          onAgendamentoSucesso();
+        }, 2000);
+      }
+      else {
+        setMenssagem("Desculpe, não foi possivel realizar o agendamento.");
+      }
     } catch (error) {
       console.error(error);
       alert("Erro ao agendar: " + error);
