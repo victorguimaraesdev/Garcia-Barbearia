@@ -12,8 +12,7 @@ function App() {
 
     return (
         <>
-            {app && <AppUser />}
-            {!app && <AppAdmin setApp={setApp} />}
+            {app ? <AppUser /> : <AppAdmin setApp={setApp} /> }
         </>
     );
 }
