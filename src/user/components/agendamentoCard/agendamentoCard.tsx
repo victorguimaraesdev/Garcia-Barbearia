@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { Cards } from "../../utils/cardsAgendamentos.ts";
+import { Cards } from "../../../utils/cardsAgendamentos.ts";
 import { Modal } from "../modal/modal.tsx";
 import { useState } from "react";
 import { FormularioCard } from "./formularioCard/formularioCard.tsx";

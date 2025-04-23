@@ -1,23 +1,24 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
-import { Link as Link2 } from "react-router-dom";
+import { Link as Link2, useLocation } from "react-router-dom";
 
 const Container = styled.div`
+  background: var(--transparent);
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 100%;
   height: 70px;
   position: fixed;
-  padding: 0 1rem;
+  padding: 0 16px;
   z-index: 1000;
   font-weight: 100;
 
   @media (max-width: 768px) {
     flex-direction: column;
+    justify-content: center;
     height: auto;
-    align-items: flex-start;
   }
 `;
 
@@ -34,7 +35,6 @@ const Logo = styled.img`
     left: 10px;
   }
 `;
-
 const Esquerda = styled.div<{ $isOpen: boolean }>`
   display: flex;
   align-items: center;
@@ -98,6 +98,38 @@ const Esquerda = styled.div<{ $isOpen: boolean }>`
     margin-top: 60px;
   }
 `;
+const Direita = styled.div<{ $isOpen: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 80px;
+  width: 50%;
+
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 50px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 10px;
+      display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
+      padding-bottom: 20px;
+
+      li a {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-top: 10px;
+  }
+`;
 const Link = styled(Link2)`
   display: inline-block;
   color: var(--primaria);
@@ -127,39 +159,15 @@ const Link = styled(Link2)`
   &:hover {
     opacity: 1;
   }
-`;
-const Direita = styled.div<{ $isOpen: boolean }>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 80px;
-  width: 50%;
 
-  ul {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    gap: 50px;
-
-    @media (max-width: 768px) {
-      flex-direction: column;
-      gap: 10px;
-      display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
-
-      li a {
-        font-size: 0.9rem;
-      }
-    }
+  &.naRota::after {
+    transform: scaleX(1);
   }
 
-  @media (max-width: 768px) {
-    width: 100%;
-    margin-top: 10px;
+  &.naRota {
+    opacity: 1;
   }
 `;
-
 const MenuToggle = styled.button`
   display: none;
 
@@ -179,6 +187,7 @@ const MenuToggle = styled.button`
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
 
   return (
     <Container>
@@ -189,10 +198,22 @@ export const Header = () => {
       <Esquerda $isOpen={menuOpen}>
         <ul>
           <li>
-            <Link to={"/"} onClick={() => setMenuOpen(false)}>Home</Link>
+            <Link
+              to="/"
+              onClick={() => setMenuOpen(false)}
+              className={location.pathname === "/home" ? "naRota" : ""}
+            >
+              Home
+            </Link>
           </li>
           <li>
-            <Link to={"/cursos"} onClick={() => setMenuOpen(false)}>Cursos</Link>
+            <Link
+              to="/cursos"
+              onClick={() => setMenuOpen(false)}
+              className={location.pathname === "/cursos" ? "naRota" : ""}
+            >
+              Cursos
+            </Link>
           </li>
         </ul>
       </Esquerda>
@@ -201,11 +222,23 @@ export const Header = () => {
         <ul>
           <li>
             <div>
-              <Link to="/agendamentos" onClick={() => setMenuOpen(false)}> Agendamentos </Link>
+              <Link
+                to="/agendamentos"
+                onClick={() => setMenuOpen(false)}
+                className={location.pathname === "/agendamentos" ? "naRota" : ""}
+              >
+                Agendamentos
+              </Link>
             </div>
           </li>
           <li>
-            <Link to="/produtos" onClick={() => setMenuOpen(false)}>Produtos</Link>
+            <Link
+              to="/produtos"
+              onClick={() => setMenuOpen(false)}
+              className={location.pathname === "/produtos" ? "naRota" : ""}
+            >
+              Produtos
+            </Link>
           </li>
         </ul>
       </Direita>
