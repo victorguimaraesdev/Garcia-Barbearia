@@ -19,7 +19,7 @@ export const verificarToken = async ({ setApp }: TokenStates) => {
 
             if (status === 202) {
                 localStorage.setItem("token", token);
-                setApp(false);
+                setApp(true); //Quando quiser mexer na dashboard colocar false
                 return;
             }
 
