@@ -1,6 +1,6 @@
 import { GoogleLogin, CredentialResponse } from "@react-oauth/google";
-import axios from "axios";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 interface Props {
     setAutorizado: (value: boolean) => void;
@@ -18,7 +18,7 @@ export const Login = ({ setAutorizado }: Props) => {
             localStorage.setItem("token", token);
             axios.defaults.headers.common["authorization"] = `Bearer ${token}`;
             setAutorizado(true);
-            return;
+            return; 
         }
         if (status === 401) {
             localStorage.setItem("token", "");

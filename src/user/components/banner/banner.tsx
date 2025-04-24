@@ -129,45 +129,51 @@ const Descricao = styled.p<{ $ativo: boolean }>`
 `;
 
 export const Banner = () => {
-  const { indexAtual, setIndexAtual } = useBanner();
+    const { indexAtual, setIndexAtual } = useBanner();
 
-  const trocarImagem = (direcao: "Proxima" | "Anterior") => {
-    setIndexAtual((prev) =>
-      direcao === "Anterior"
-        ? prev === 0
-          ? Cards.length - 1
-          : prev - 1
-        : prev === Cards.length - 1
-        ? 0
-        : prev + 1
+    const trocarImagem = (direcao: "Proxima" | "Anterior") => {
+        setIndexAtual((prev) => {
+            if (direcao === "Anterior") {
+                if (prev === 0) {
+                    return Cards.length - 1;
+                } else {
+                    return prev - 1;
+                }
+            } else {
+                if (prev === Cards.length - 1) {
+                    return 0;
+                } else {
+                    return prev + 1;
+                }
+            }
+        });
+    };
+
+    return (
+        <Container>
+            <ArrowLeft onClick={() => trocarImagem("Anterior")} />
+            <ArrowRight onClick={() => trocarImagem("Proxima")} />
+            {Cards.map((src, i) => (
+                <Imagem key={i} src={src.imagens} $ativa={i === indexAtual} draggable={false} />
+            ))}
+            {Cards.map((_, i) => (
+                <Bolinha key={i} $selecionado={i === indexAtual} />
+            ))}
+            <PseudoCard>
+                {Cards.map((src, i) => (
+                    <Icone key={i} src={src.icones} $ativo={i === indexAtual} draggable={false} />
+                ))}
+                {Cards.map(({ titulo }, i) => (
+                    <H1 key={i} $ativo={i === indexAtual}>
+                        {titulo}
+                    </H1>
+                ))}
+                {Cards.map(({ descricao }, i) => (
+                    <Descricao key={i} $ativo={i === indexAtual}>
+                        {descricao}
+                    </Descricao>
+                ))}
+            </PseudoCard>
+        </Container>
     );
-  };
-
-  return (
-    <Container>
-      <ArrowLeft onClick={() => trocarImagem("Anterior")} />
-      <ArrowRight onClick={() => trocarImagem("Proxima")} />
-      {Cards.map((src, i) => (
-        <Imagem key={i} src={src.imagens} $ativa={i === indexAtual} draggable={false} />
-      ))}
-      {Cards.map((_, i) => (
-        <Bolinha key={i} $selecionado={i === indexAtual} />
-      ))}
-      <PseudoCard>
-        {Cards.map((src, i) => (
-          <Icone key={i} src={src.icones} $ativo={i === indexAtual} draggable={false} />
-        ))}
-        {Cards.map(({ titulo }, i) => (
-          <H1 key={i} $ativo={i === indexAtual}>
-            {titulo}
-          </H1>
-        ))}
-        {Cards.map(({ descricao }, i) => (
-          <Descricao key={i} $ativo={i === indexAtual}>
-            {descricao}
-          </Descricao>
-        ))}
-      </PseudoCard>
-    </Container>
-  );
 };
