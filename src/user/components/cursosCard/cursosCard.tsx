@@ -158,7 +158,7 @@ export const CursosCard = () => {
   return (
     <Container>
       <Card>
-        <ImagemCard src="/cursos/tesouras.jpg" />
+        <ImagemCard src="/cursos/chamadaCurso.png" />
         <InformacoesCard>
           <TituloCard>Curso de Barbeiro Profissional</TituloCard>
           <ParagrafoCard>

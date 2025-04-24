@@ -14,7 +14,12 @@ const KeyFrame = keyframes`
     transform: translateY(0px);
   }
 `;
-
+// const TituloPrincipal = styled.h1`
+//     margin-top: 20px;
+//     display: flex;
+//     font-size: 1.5rem;
+//     font-weight: 100;
+// `
 const Container = styled.div`
   margin-top: 100px;
   width: 100%;
@@ -124,6 +129,10 @@ const Botão = styled.button`
   border: none;
   cursor: pointer;
   z-index: 2;
+  transition: 0.3s ease-in-out;
+  &:hover{
+    background-color: rgba(83, 83, 83, 0.7);
+  }
 
   @media (max-width: 768px) {
     width: 30%;
