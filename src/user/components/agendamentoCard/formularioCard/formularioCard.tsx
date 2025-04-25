@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { Login } from "../../googleAuth/Auth";
+import { LoginGoogle } from "../../auth/GoogleAuth";
+import { LoginApple } from "../../auth/AppleAuth";
 
 const Container = styled.div`
   display: flex;
@@ -186,11 +187,16 @@ const BotaoHorario = styled.button<{
   }
 `;
 
-const LoginGoole = styled.div`
+const LoginDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   margin-top: 20px;
+  gap: 10px;
 
   @media (max-width: 480px) {
-    width: 100%;
+    width: 90%;
   }
 `;
 
@@ -338,9 +344,10 @@ export const FormularioCard = ({ onAgendamentoSucesso }: Props) => {
       {autorizado ? (
         <Enviar onClick={EnviarParaAPI}> Agendar </Enviar>
       ) : (
-        <LoginGoole>
-          <Login setAutorizado={setAutorizado} />
-        </LoginGoole>
+        <LoginDiv>
+          <LoginGoogle setAutorizado={setAutorizado} />
+          <LoginApple setAutorizado={setAutorizado} />
+        </LoginDiv>
       )}
     </Container>
   );
