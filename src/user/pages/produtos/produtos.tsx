@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { Cards } from "../../../utils/user/cardsHome";
-import { useBanner } from "../../context/useBanner";
 import { produtos } from "../../../utils/cardsProdutos";
 import { keyframes } from "styled-components";
 
@@ -115,14 +113,9 @@ const BotaoEncomende = styled.button`
 
 
 export const Produtos = () => {
-  const { indexAtual } = useBanner();
 
   return (
     <Container>
-      {Cards.map((src, i) => (
-        <Imagem key={i} src={src.imagens} $ativa={i === indexAtual} draggable={false} />
-      ))}
-
       <GridProdutos>
         {produtos.map((produto, i) => (
           <CardProduto key={i} $delay={i * 0.3}>

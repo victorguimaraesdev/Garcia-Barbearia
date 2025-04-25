@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Cards } from "../../../utils/user/cardsHome";
-import { useBanner } from "../../context/useBanner";
 import { CursosCard } from "../../components/cursosCard/cursosCard";
 
 const Container = styled.div`
@@ -24,18 +23,9 @@ const Imagem = styled.img<{ $ativa: boolean }>`
 `;
 
 export const Cursos = () => {
-  const { indexAtual } = useBanner();
 
   return (
     <Container>
-      {Cards.map((src, i) => (
-        <Imagem
-          key={i}
-          src={src.imagens}
-          $ativa={i === indexAtual}
-          draggable={false}
-        />
-      ))}
       <CursosCard />
     </Container>
   );

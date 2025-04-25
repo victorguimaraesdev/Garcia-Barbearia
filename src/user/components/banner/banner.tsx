@@ -1,7 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { Cards } from "../../../utils/user/cardsHome.ts";
-import { useBanner } from "../../context/useBanner.ts";
 
 const KeyFrame = keyframes`
   0% {
@@ -128,52 +127,45 @@ const Descricao = styled.p<{ $ativo: boolean }>`
   animation: ${({ $ativo }) => ($ativo ? KeyFrame : "none")} 1.8s ease-in-out;
 `;
 
-export const Banner = () => {
-    const { indexAtual, setIndexAtual } = useBanner();
+interface BannerProps {
+  setIndexAtual: (index: number) => void;
+  indexAtual: number;
+}
 
-    const trocarImagem = (direcao: "Proxima" | "Anterior") => {
-        setIndexAtual((prev) => {
-            if (direcao === "Anterior") {
-                if (prev === 0) {
-                    return Cards.length - 1;
-                } else {
-                    return prev - 1;
-                }
-            } else {
-                if (prev === Cards.length - 1) {
-                    return 0;
-                } else {
-                    return prev + 1;
-                }
-            }
-        });
-    };
+export const Banner = ({ setIndexAtual, indexAtual }: BannerProps) => {
 
-    return (
-        <Container>
-            <ArrowLeft onClick={() => trocarImagem("Anterior")} />
-            <ArrowRight onClick={() => trocarImagem("Proxima")} />
-            {Cards.map((src, i) => (
-                <Imagem key={i} src={src.imagens} $ativa={i === indexAtual} draggable={false} />
-            ))}
-            {Cards.map((_, i) => (
-                <Bolinha key={i} $selecionado={i === indexAtual} />
-            ))}
-            <PseudoCard>
-                {Cards.map((src, i) => (
-                    <Icone key={i} src={src.icones} $ativo={i === indexAtual} draggable={false} />
-                ))}
-                {Cards.map(({ titulo }, i) => (
-                    <H1 key={i} $ativo={i === indexAtual}>
-                        {titulo}
-                    </H1>
-                ))}
-                {Cards.map(({ descricao }, i) => (
-                    <Descricao key={i} $ativo={i === indexAtual}>
-                        {descricao}
-                    </Descricao>
-                ))}
-            </PseudoCard>
-        </Container>
-    );
+  const trocarImagem = (direcao: "Proxima" | "Anterior") => {
+    if (direcao === "Proxima") {
+      const novoIndex = indexAtual + 1;
+      setIndexAtual(novoIndex >= Cards.length ? 0 : novoIndex);
+    } else {
+      const novoIndex = indexAtual - 1;
+      setIndexAtual(novoIndex < 0 ? Cards.length - 1 : novoIndex);
+    }
+  };
+
+  return (
+    <Container>
+      <ArrowLeft onClick={() => trocarImagem("Anterior")} />
+      <ArrowRight onClick={() => trocarImagem("Proxima")} />
+      {Cards.map((_, i) => (
+        <Bolinha key={i} $selecionado={i === indexAtual} />
+      ))}
+      <PseudoCard>
+        {Cards.map((src, i) => (
+          <Icone key={i} src={src.icones} $ativo={i === indexAtual} draggable={false} />
+        ))}
+        {Cards.map(({ titulo }, i) => (
+          <H1 key={i} $ativo={i === indexAtual}>
+            {titulo}
+          </H1>
+        ))}
+        {Cards.map(({ descricao }, i) => (
+          <Descricao key={i} $ativo={i === indexAtual}>
+            {descricao}
+          </Descricao>
+        ))}
+      </PseudoCard>
+    </Container>
+  );
 };

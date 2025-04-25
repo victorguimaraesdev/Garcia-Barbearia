@@ -1,9 +1,15 @@
 import { Banner } from "../../components/banner/banner";
 
-export const Home = () => {
+interface BannerProps {
+  setIndexAtual: (index: number) => void;
+  indexAtual: number;
+}
+
+export const Home = ({setIndexAtual, indexAtual}: BannerProps) => {
   return (
     <div>
-      <Banner />
+      <Banner setIndexAtual={setIndexAtual} indexAtual={indexAtual}/>
     </div>
   );
 };
+  

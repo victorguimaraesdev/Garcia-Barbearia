@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Cards } from "../../../utils/user/cardsHome";
-import { useBanner } from "../../context/useBanner";
 import { AgendamentoCard } from "../../components/agendamentoCard/agendamentoCard";
 
 const Container = styled.div`
@@ -25,13 +24,8 @@ const Imagem = styled.img<{ $ativa: boolean }>`
 
 export const Agendamentos = () => {
 
-  const { indexAtual } = useBanner();
-
   return (
     <Container>
-      {Cards.map((src, i) => (
-        <Imagem key={i} src={src.imagens} $ativa={i === indexAtual} draggable={false}/>
-      ))}
       <AgendamentoCard />
     </Container>
   );
