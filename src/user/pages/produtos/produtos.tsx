@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Cards } from "../../../utils/user/cardsHome";
 import { useBanner } from "../../context/useBanner";
-import {produtos} from "../../../utils/cardsProdutos";
+import { produtos } from "../../../utils/cardsProdutos";
 import { keyframes } from "styled-components";
 
 const fadeInUp = keyframes`
@@ -15,35 +15,27 @@ const fadeInUp = keyframes`
   }
 `;
 
-
 const Container = styled.div`
-  position: relative;
   width: 100vw;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-start;
-  overflow: hidden;
-  padding: 60px 20px;
-  gap: 40px;
+  flex-direction: column;
 `;
 
-
 const Imagem = styled.img<{ $ativa: boolean }>`
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
   object-fit: cover;
   opacity: ${({ $ativa }) => ($ativa ? 0.3 : 0)};
   transition: opacity 0.8s ease-in-out;
   z-index: 0;
 `;
 
-
 const GridProdutos = styled.div`
-  position: relative;
-  top: 150px;
+  padding-top: 100px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -51,16 +43,12 @@ const GridProdutos = styled.div`
   width: 100%;
   max-width: 1200px;
   z-index: 1;
-
-  @media (max-width: 768px) {
-   top: 20px;
-  }
 `;
-
 
 const CardProduto = styled.div<{ $delay: number }>`
   display: flex;
   flex-direction: column;
+  height: 350px;
   width: 280px;
   border-radius: 15px;
   background-color: rgba(0, 0, 0, 0.6);
@@ -141,11 +129,11 @@ export const Produtos = () => {
             <ImagemProduto src={produto.imagem} alt={produto.titulo} />
             <TituloProduto>{produto.titulo}</TituloProduto>
             <DescricaoProduto>{produto.descricao}</DescricaoProduto>
-            <ContainerEncomentePreco  href="https://api.whatsapp.com/send?phone=5515997316945"
+            <ContainerEncomentePreco href="https://api.whatsapp.com/send?phone=5515997316945"
               target="_blank"
               rel="noopener noreferrer">
-               <PrecoProduto>{produto.preco}</PrecoProduto>
-                <BotaoEncomende>Encomende</BotaoEncomende>
+              <PrecoProduto>{produto.preco}</PrecoProduto>
+              <BotaoEncomende>Encomende</BotaoEncomende>
             </ContainerEncomentePreco>
           </CardProduto>
         ))}
