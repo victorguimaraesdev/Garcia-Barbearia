@@ -22,16 +22,6 @@ const Container = styled.div`
   overflow: hidden;
 `;
 
-const Imagem = styled.img<{ $ativa: boolean }>`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: ${({ $ativa }) => ($ativa ? 0.3 : 0)};
-  transition: opacity 0.8s ease-in-out;
-  z-index: 0;
-`;
-
 const ArrowLeft = styled(SlArrowLeft)`
   position: absolute;
   left: 4rem;
@@ -57,6 +47,7 @@ const ArrowRight = styled(SlArrowRight)`
     right: 2rem;
   }
 `;
+
 const Bolinha = styled.div<{ $selecionado: boolean }>`
   position: relative;
   top: 300px;
@@ -67,6 +58,7 @@ const Bolinha = styled.div<{ $selecionado: boolean }>`
   border: 2px solid white;
   background-color: ${({ $selecionado }) => ($selecionado ? "white" : "none")};
 `;
+
 const PseudoCard = styled.div`
   display: flex;
   align-items: center;
@@ -111,6 +103,7 @@ const H1 = styled.h1<{ $ativo: boolean }>`
   top: 210px;
   animation: ${({ $ativo }) => ($ativo ? KeyFrame : "none")} 1.3s ease-in-out;
 `;
+
 const Descricao = styled.p<{ $ativo: boolean }>`
   position: absolute;
   color: var(--primaria);

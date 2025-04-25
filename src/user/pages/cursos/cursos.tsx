@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Cards } from "../../../utils/user/cardsHome";
 import { CursosCard } from "../../components/cursosCard/cursosCard";
 
 const Container = styled.div`
@@ -10,16 +9,6 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   overflow: hidden;
-`;
-
-const Imagem = styled.img<{ $ativa: boolean }>`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: ${({ $ativa }) => ($ativa ? 0.3 : 0)};
-  transition: opacity 0.8s ease-in-out;
-  z-index: 0;
 `;
 
 export const Cursos = () => {

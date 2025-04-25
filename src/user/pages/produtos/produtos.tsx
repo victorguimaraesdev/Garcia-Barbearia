@@ -22,16 +22,6 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const Imagem = styled.img<{ $ativa: boolean }>`
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  opacity: ${({ $ativa }) => ($ativa ? 0.3 : 0)};
-  transition: opacity 0.8s ease-in-out;
-  z-index: 0;
-`;
-
 const GridProdutos = styled.div`
   padding-top: 100px;
   display: flex;
