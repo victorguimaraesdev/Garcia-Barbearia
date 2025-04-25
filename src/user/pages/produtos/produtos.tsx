@@ -1,8 +1,8 @@
-import styled, { keyframes } from "styled-components";
-import { Cards } from "../../../utils/cardsHome";
+import styled from "styled-components";
+import { Cards } from "../../../utils/user/cardsHome";
 import { useBanner } from "../../context/useBanner";
 import {produtos} from "../../../utils/cardsProdutos";
-
+import { keyframes } from "styled-components";
 
 const fadeInUp = keyframes`
   0% {

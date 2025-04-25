@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Cards } from "../../../utils/cardsHome";
+import { Cards } from "../../../utils/user/cardsHome";
 import { useBanner } from "../../context/useBanner";
 import { CursosCard } from "../../components/cursosCard/cursosCard";
 
