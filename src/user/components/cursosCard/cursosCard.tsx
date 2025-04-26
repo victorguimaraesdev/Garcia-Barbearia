@@ -14,11 +14,23 @@ const KeyFrame = keyframes`
 `;
 
 const Container = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+const Caixa = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 80%;
+  height: auto;
+  padding-top: 100px;
+  gap: 20px;
+
+  @media (max-width: 768px) {
+    padding-top: 30px;
+    gap: 10px;
+  }
 `;
 
 const Card = styled.div`
@@ -157,6 +169,7 @@ const BotaoLink = styled.a`
 export const CursosCard = () => {
   return (
     <Container>
+      <Caixa>
       <Card>
         <ImagemCard src="/cursos/chamadaCurso.png" />
         <InformacoesCard>
@@ -192,6 +205,7 @@ export const CursosCard = () => {
           </ContainerBotaoCard>
         </InformacoesCard>
       </Card>
+      </Caixa>
     </Container>
   );
 };

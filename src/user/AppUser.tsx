@@ -18,24 +18,23 @@ const Background = styled.img<{ $ativa: boolean }>`
     z-index: -1;
 `
 
-const ContainerAppUser = styled.body`
+const ContainerAppUser = styled.div`
     width: 100vw;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: start;
     align-items: center;
-    flex-direction: column;
-    overflow: hidden;
 `
 
 const ContainerRoutes = styled.div`
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: calc(100% - 70px); // Tamanho do header
+    margin-top: 70px; // Tamanho do header
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: start;
     flex-direction: column;
-    overflow: auto;
 `
 
 export const AppUser = () => {

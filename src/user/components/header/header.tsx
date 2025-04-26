@@ -4,6 +4,7 @@ import { FiMenu, FiX } from "react-icons/fi";
 import { Link as Link2, useLocation } from "react-router-dom";
 
 const Container = styled.div`
+  position: fixed;
   background: var(--transparent);
   display: flex;
   justify-content: space-around;
@@ -20,7 +21,6 @@ const Container = styled.div`
     height: auto;
   }
 `;
-
 const Logo = styled.img`
   position: absolute;
   top: 5px;
@@ -183,7 +183,6 @@ const MenuToggle = styled.button`
     cursor: pointer;
   }
 `;
-
 export const UserHeader = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();

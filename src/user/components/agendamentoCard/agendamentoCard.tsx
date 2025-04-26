@@ -7,37 +7,35 @@ import { FormularioCard } from "./formularioCard/formularioCard.tsx";
 const KeyFrame = keyframes`
   0% {
     opacity: 0;
-    transform: translateY(200px);
+    transform: translateY(100px);
   }
   100% {
     opacity: 0.9;
     transform: translateY(0px);
   }
 `;
-// const TituloPrincipal = styled.h1`
-//     margin-top: 20px;
-//     display: flex;
-//     font-size: 1.5rem;
-//     font-weight: 100;
-// `
+
 const Container = styled.div`
-  margin-top: 100px;
+  width: 100%;
+  height: 100%;
+  padding-top: 100px;
+  @media (max-width: 768px) {
+    padding-top: 30px;
+  }
+`;
+
+const Caixa = styled.div`
   width: 100%;
   min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: start;
   gap: 20px;
-  color: var(--primaria);
-  font-size: 1.2rem;
-  z-index: 1;
-  padding: 20px;
 
   @media (max-width: 768px) {
     padding: 10px;
-    font-size: 1rem;
-    margin-top: 90px;
+    gap: 10px;
   }
 `;
 
@@ -143,6 +141,7 @@ export const AgendamentoCard = () => {
   const [openModal, setOpenModal] = useState(false);
   return (
     <Container>
+      <Caixa>
       {Cards.map((_, i) => (
         <Card key={i} $delay={i * 0.2}>
           <ContainerInicio>
@@ -155,9 +154,11 @@ export const AgendamentoCard = () => {
           <Botão onClick={() => setOpenModal(true)}>Agendar</Botão>
         </Card>
       ))}
+      </Caixa>
       <Modal isOpen={openModal} onClose={() => setOpenModal(false)}>
         <FormularioCard onAgendamentoSucesso={() => setOpenModal(false)} />
       </Modal>
+      
     </Container>
   );
 };

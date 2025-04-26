@@ -12,17 +12,20 @@ const KeyFrame = keyframes`
     transform: translateY(0px);
   }
 `;
+
 const Container = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
 `;
 
 const ArrowLeft = styled(SlArrowLeft)`
-  position: absolute;
+  position: fixed;
+  bottom: 50%;
   left: 4rem;
   font-size: clamp(1.5rem, 4vw, 3rem);
   color: var(--primaria);
@@ -35,7 +38,8 @@ const ArrowLeft = styled(SlArrowLeft)`
 `;
 
 const ArrowRight = styled(SlArrowRight)`
-  position: absolute;
+  position: fixed;
+  bottom: 50%;
   right: 4rem;
   font-size: clamp(1.5rem, 4vw, 3rem);
   color: var(--primaria);
@@ -45,6 +49,55 @@ const ArrowRight = styled(SlArrowRight)`
   @media (max-width: 768px) {
     right: 2rem;
   }
+`;
+
+const PseudoCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 20vh;
+  width: 300px;
+  height: 300px;
+
+  animation: ${KeyFrame} 1s ease-in-out;
+`;
+
+const Icone = styled.img<{ $ativo: boolean }>`
+  display: ${({ $ativo }) => ($ativo ? "flex" : "none")};
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+  transition: 1s;
+  opacity: ${({ $ativo }) => ($ativo ? 0.9 : 0)};
+  animation: ${({ $ativo }) => ($ativo ? KeyFrame : "none")} 1s ease-in-out;
+`;
+
+const H1 = styled.h1<{ $ativo: boolean }>`
+  display: ${({ $ativo }) => ($ativo ? "flex" : "none")};
+  color: var(--primaria);
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  opacity: ${({ $ativo }) => ($ativo ? 0.8 : 0)};
+  transition: 1s;
+  text-align: justify;
+  font-weight: 900;
+  font-size: 40px;
+  text-align: center;
+  animation: ${({ $ativo }) => ($ativo ? KeyFrame : "none")} 1.3s ease-in-out;
+`;
+
+const Descricao = styled.p<{ $ativo: boolean }>`
+  display: ${({ $ativo }) => ($ativo ? "flex" : "none")};
+  color: var(--primaria);
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  text-align: justify;
+  font-weight: 100;
+  font-size: 20px;
+  text-align: center;
+  transition: 1s;
+  opacity: ${({ $ativo }) => ($ativo ? 0.9 : 0)};
+  animation: ${({ $ativo }) => ($ativo ? KeyFrame : "none")} 1.8s ease-in-out;
 `;
 
 const Bolinha = styled.div<{ $selecionado: boolean }>`
@@ -68,65 +121,13 @@ const CaixaBolinha = styled.div`
     flex-direction: row;
 `;
 
-const PseudoCard = styled.div`
+const Caixa = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-  position: absolute;
-  width: 16%;
-  height: 600px;
-  z-index: 1;
-  animation: ${KeyFrame} 1s ease-in-out;
-
-  @media (max-width: 768px) {
-    width: 40%;
-  }
-`;
-
-const Icone = styled.img<{ $ativo: boolean }>`
-  position: absolute;
-  color: var(--primaria);
-  font-size: clamp(1.5rem, 4vw, 3rem);
-  z-index: 1;
-  opacity: ${({ $ativo }) => ($ativo ? 0.9 : 0)};
-  transition: 1s;
-  width: 200px;
-  height: auto;
-  top: 0;
-  animation: ${({ $ativo }) => ($ativo ? KeyFrame : "none")} 1s ease-in-out;
-`;
-
-const H1 = styled.h1<{ $ativo: boolean }>`
-  position: absolute;
-  color: var(--primaria);
-  font-size: clamp(1.5rem, 4vw, 3rem);
-  z-index: 1;
-  opacity: ${({ $ativo }) => ($ativo ? 0.8 : 0)};
-  transition: 1s;
-  text-align: justify;
-  font-weight: 900;
-  font-size: 40px;
-  text-align: center;
-  border-radius: 15px;
-  top: 210px;
-  animation: ${({ $ativo }) => ($ativo ? KeyFrame : "none")} 1.3s ease-in-out;
-`;
-
-const Descricao = styled.p<{ $ativo: boolean }>`
-  position: absolute;
-  color: var(--primaria);
-  font-size: clamp(1.5rem, 4vw, 3rem);
-  z-index: 1;
-  opacity: ${({ $ativo }) => ($ativo ? 0.9 : 0)};
-  transition: 1s;
-  text-align: justify;
-  font-weight: 100;
-  font-size: 20px;
-  text-align: center;
-  border-radius: 15px;
-  top: 260px;
-  animation: ${({ $ativo }) => ($ativo ? KeyFrame : "none")} 1.8s ease-in-out;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  height: 100%;
 `;
 
 interface BannerProps {
@@ -156,19 +157,25 @@ export const Banner = ({ setIndexAtual, indexAtual }: BannerProps) => {
       ))}
       </CaixaBolinha>
       <PseudoCard>
+        <Caixa>
         {Cards.map((src, i) => (
           <Icone key={i} src={src.icones} $ativo={i === indexAtual} draggable={false} />
         ))}
+        </Caixa>
+        <Caixa>
         {Cards.map(({ titulo }, i) => (
           <H1 key={i} $ativo={i === indexAtual}>
             {titulo}
           </H1>
         ))}
+        </Caixa>
+        <Caixa>
         {Cards.map(({ descricao }, i) => (
           <Descricao key={i} $ativo={i === indexAtual}>
             {descricao}
           </Descricao>
         ))}
+        </Caixa>
       </PseudoCard>
     </Container>
   );

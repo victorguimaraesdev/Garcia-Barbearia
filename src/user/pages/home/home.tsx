@@ -2,12 +2,8 @@ import { Banner } from "../../components/banner/banner";
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+    width: 100%;
+    height: 100%;
 `;
 
 interface BannerProps {

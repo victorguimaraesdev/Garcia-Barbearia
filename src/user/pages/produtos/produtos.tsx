@@ -15,12 +15,16 @@ const fadeInUp = keyframes`
 
 const Container = styled.div`
   padding-top: 100px;
-  width: 100vw;
-  min-height: 100%;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: start;
   align-items: center;
   flex-direction: column;
+
+  @media (max-width: 768px) {
+    padding-top: 30px;
+  }
 `;
 
 const GridProdutos = styled.div`
@@ -96,10 +100,6 @@ const BotaoEncomende = styled.button`
     background-color: rgba(83, 83, 83, 0.7);
   }
 `
-
-
-
-
 
 export const Produtos = () => {
 
