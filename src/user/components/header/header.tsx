@@ -10,9 +10,8 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   height: 70px;
-  position: absolute;
   padding: 0 16px;
-  z-index: 1000;
+  z-index: 2;
   font-weight: 100;
 
   @media (max-width: 768px) {
@@ -185,7 +184,7 @@ const MenuToggle = styled.button`
   }
 `;
 
-export const Header = () => {
+export const UserHeader = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 

@@ -14,23 +14,22 @@ const fadeInUp = keyframes`
 `;
 
 const Container = styled.div`
+  padding-top: 100px;
   width: 100vw;
-  min-height: 100vh;
+  min-height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   flex-direction: column;
 `;
 
 const GridProdutos = styled.div`
-  padding-top: 100px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
   width: 100%;
   max-width: 1200px;
-  z-index: 1;
 `;
 
 const CardProduto = styled.div<{ $delay: number }>`
@@ -53,8 +52,8 @@ const CardProduto = styled.div<{ $delay: number }>`
 `;
 
 const ImagemProduto = styled.img`
-  width: 100%;
   height: 200px;
+  width: auto;
   object-fit: cover;
   border-radius: 10px;
 `;

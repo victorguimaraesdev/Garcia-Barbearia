@@ -1,4 +1,4 @@
-import { Header } from "./components/header/header"
+import { UserHeader } from "./components/header/header"
 import { Routes, Route, Navigate } from "react-router-dom"
 import { useState } from "react"
 import { Cards } from "../utils/user/cardsHome"
@@ -8,14 +8,34 @@ import { Produtos } from "./pages/produtos/produtos"
 import { Cursos } from "./pages/cursos/cursos"
 import styled from "styled-components"
 
-const Imagem = styled.img<{ $ativa: boolean }>`
-    position: absolute;
-    width: 100%;
-    height: 100%;
+const Background = styled.img<{ $ativa: boolean }>`
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
     object-fit: cover;
     opacity: ${({ $ativa }) => ($ativa ? 0.3 : 0)};
     transition: opacity 0.8s ease-in-out;
-    z-index: 0;
+    z-index: -1;
+`
+
+const ContainerAppUser = styled.body`
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+`
+
+const ContainerRoutes = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: auto;
 `
 
 export const AppUser = () => {
@@ -24,18 +44,22 @@ export const AppUser = () => {
 
     return (
         <>
-            <Header />
             {Cards.map((src, i) => (
-                <Imagem key={i} src={src.imagens} $ativa={i === indexAtual} draggable={false} />
+                <Background key={i} src={src.imagens} $ativa={i === indexAtual} draggable={false} />
             ))}
-            <Routes>
-                <Route path="*" element={<Navigate to="/home" />} />
-                <Route path="/" element={<Navigate to="/home" />} />
-                <Route path="/home" element={<Home setIndexAtual={setIndexAtual} indexAtual={indexAtual} />} />
-                <Route path="/agendamentos" element={<Agendamentos />} />
-                <Route path="/produtos" element={<Produtos />} />
-                <Route path="/cursos" element={<Cursos />} />
-            </Routes>
+            <ContainerAppUser>
+                <UserHeader />
+                <ContainerRoutes>
+                    <Routes>
+                        <Route path="*" element={<Navigate to="/home" />} />
+                        <Route path="/" element={<Navigate to="/home" />} />
+                        <Route path="/home" element={<Home setIndexAtual={setIndexAtual} indexAtual={indexAtual} />} />
+                        <Route path="/agendamentos" element={<Agendamentos />} />
+                        <Route path="/produtos" element={<Produtos />} />
+                        <Route path="/cursos" element={<Cursos />} />
+                    </Routes>
+                </ContainerRoutes>
+            </ContainerAppUser>
         </>
     )
 }
