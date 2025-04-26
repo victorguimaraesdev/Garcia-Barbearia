@@ -3,21 +3,27 @@ import { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { Link as Link2, useLocation } from "react-router-dom";
 
+const Barra = styled.div`
+  width: 100%;
+  height: 70px;
+`;
 const Container = styled.div`
-  position: fixed;
   background: var(--transparent);
+  position: fixed;
+  top: 0;
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 100%;
   height: 70px;
   padding: 0 16px;
-  z-index: 2;
+  z-index: 3;
   font-weight: 100;
 
   @media (max-width: 768px) {
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
+    min-height: 70px;
     height: auto;
   }
 `;
@@ -94,7 +100,7 @@ const Esquerda = styled.div<{ $isOpen: boolean }>`
 
   @media (max-width: 768px) {
     width: 100%;
-    margin-top: 60px;
+    padding-top: 20px;
   }
 `;
 const Direita = styled.div<{ $isOpen: boolean }>`
@@ -126,7 +132,7 @@ const Direita = styled.div<{ $isOpen: boolean }>`
 
   @media (max-width: 768px) {
     width: 100%;
-    margin-top: 10px;
+    padding-top: 10px;
   }
 `;
 const Link = styled(Link2)`
@@ -179,68 +185,71 @@ const MenuToggle = styled.button`
     position: absolute;
     top: 20px;
     right: 20px;
-    z-index: 1100;
+    z-index: 100;
     cursor: pointer;
   }
 `;
 export const UserHeader = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const location = useLocation();
+    const [menuOpen, setMenuOpen] = useState(false);
+    const location = useLocation();
 
-  return (
-    <Container>
-      <MenuToggle onClick={() => setMenuOpen(!menuOpen)}>
-        {menuOpen ? <FiX /> : <FiMenu />}
-      </MenuToggle>
+    return (
+        <>
+            <Barra />
+            <Container>
+                <MenuToggle onClick={() => setMenuOpen(!menuOpen)}>
+                    {menuOpen ? <FiX /> : <FiMenu />}
+                </MenuToggle>
 
-      <Esquerda $isOpen={menuOpen}>
-        <ul>
-          <li>
-            <Link
-              to="/"
-              onClick={() => setMenuOpen(false)}
-              className={location.pathname === "/home" ? "naRota" : ""}
-            >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/cursos"
-              onClick={() => setMenuOpen(false)}
-              className={location.pathname === "/cursos" ? "naRota" : ""}
-            >
-              Cursos
-            </Link>
-          </li>
-        </ul>
-      </Esquerda>
+                <Esquerda $isOpen={menuOpen}>
+                    <ul>
+                        <li>
+                            <Link
+                                to="/"
+                                onClick={() => setMenuOpen(false)}
+                                className={location.pathname === "/home" ? "naRota" : ""}
+                            >
+                                Home
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/cursos"
+                                onClick={() => setMenuOpen(false)}
+                                className={location.pathname === "/cursos" ? "naRota" : ""}
+                            >
+                                Cursos
+                            </Link>
+                        </li>
+                    </ul>
+                </Esquerda>
 
-      <Direita $isOpen={menuOpen}>
-        <ul>
-          <li>
-            <div>
-              <Link
-                to="/agendamentos"
-                onClick={() => setMenuOpen(false)}
-                className={location.pathname === "/agendamentos" ? "naRota" : ""}
-              >
-                Agendamentos
-              </Link>
-            </div>
-          </li>
-          <li>
-            <Link
-              to="/produtos"
-              onClick={() => setMenuOpen(false)}
-              className={location.pathname === "/produtos" ? "naRota" : ""}
-            >
-              Produtos
-            </Link>
-          </li>
-        </ul>
-      </Direita>
-      <Logo src="/logo/logo.png" draggable={false} />
-    </Container>
-  );
+                <Direita $isOpen={menuOpen}>
+                    <ul>
+                        <li>
+                            <div>
+                                <Link
+                                    to="/agendamentos"
+                                    onClick={() => setMenuOpen(false)}
+                                    className={location.pathname === "/agendamentos" ? "naRota" : ""}
+                                >
+                                    Agendamentos
+                                </Link>
+                            </div>
+                        </li>
+                        <li>
+                            <Link
+                                to="/produtos"
+                                onClick={() => setMenuOpen(false)}
+                                className={location.pathname === "/produtos" ? "naRota" : ""}
+                            >
+                                Produtos
+                            </Link>
+                        </li>
+                    </ul>
+                </Direita>
+                <Logo src="/logo/logo.png" draggable={false} />
+            </Container>
+        </>
+    );
 };

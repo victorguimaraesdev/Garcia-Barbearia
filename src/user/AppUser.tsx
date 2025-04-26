@@ -17,25 +17,19 @@ const Background = styled.img<{ $ativa: boolean }>`
     opacity: ${({ $ativa }) => ($ativa ? 0.3 : 0)};
     transition: opacity 0.8s ease-in-out;
     z-index: -1;
+    overflow: hidden;
 `
 
 const ContainerAppUser = styled.div`
     width: 100vw;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
+    overflow: hidden;
 `
 
 const ContainerRoutes = styled.div`
-    width: 100vw;
-    height: calc(100% - 70px); // Tamanho do header
-    margin-top: 70px; // Tamanho do header
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 `
 
 export const AppUser = () => {

@@ -14,6 +14,7 @@ const fadeInUp = keyframes`
 `;
 
 const Container = styled.div`
+  overflow: auto;
   padding-top: 100px;
   width: 100%;
   height: 100%;
