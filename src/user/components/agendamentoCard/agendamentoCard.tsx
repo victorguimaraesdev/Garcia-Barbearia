@@ -17,31 +17,24 @@ const KeyFrame = keyframes`
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
-  padding-top: 100px;
-  @media (max-width: 768px) {
-    padding-top: 30px;
-  }
-`;
-
-const Caixa = styled.div`
-  width: 100%;
-  min-height: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: start;
+  padding: 100px;
   gap: 20px;
 
   @media (max-width: 768px) {
     padding: 10px;
+    padding-bottom: 100px;
     gap: 10px;
   }
 `;
 
 const Card = styled.div<{ $delay: number }>`
   width: 60%;
-  min-height: 100px;
+  height: 100px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -62,8 +55,8 @@ const Card = styled.div<{ $delay: number }>`
   }
 
   @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
     padding: 15px;
     width: 95%;
   }
@@ -71,15 +64,11 @@ const Card = styled.div<{ $delay: number }>`
 
 const ContainerInicio = styled.div`
   display: flex;
-  width: 100%;
-  max-width: 400px;
   height: 100%;
-  flex-direction: row;
+  width: 250px;
   gap: 20px;
 
   @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: flex-start;
     gap: 10px;
   }
 `;
@@ -141,7 +130,6 @@ export const AgendamentoCard = () => {
   const [openModal, setOpenModal] = useState(false);
   return (
     <Container>
-      <Caixa>
       {Cards.map((_, i) => (
         <Card key={i} $delay={i * 0.2}>
           <ContainerInicio>
@@ -154,7 +142,6 @@ export const AgendamentoCard = () => {
           <Botão onClick={() => setOpenModal(true)}>Agendar</Botão>
         </Card>
       ))}
-      </Caixa>
       <Modal isOpen={openModal} onClose={() => setOpenModal(false)}>
         <FormularioCard onAgendamentoSucesso={() => setOpenModal(false)} />
       </Modal>

@@ -15,17 +15,12 @@ const fadeInUp = keyframes`
 
 const Container = styled.div`
   overflow: auto;
-  padding-top: 100px;
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: start;
   align-items: center;
   flex-direction: column;
-
-  @media (max-width: 768px) {
-    padding-top: 30px;
-  }
 `;
 
 const GridProdutos = styled.div`
@@ -35,6 +30,8 @@ const GridProdutos = styled.div`
   gap: 20px;
   width: 100%;
   max-width: 1200px;
+  padding-top: 50px;
+  padding-bottom: 100px;
 `;
 
 const CardProduto = styled.div<{ $delay: number }>`
