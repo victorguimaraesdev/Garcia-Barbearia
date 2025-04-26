@@ -1,12 +1,13 @@
 import { UserHeader } from "./components/header/header"
 import { Routes, Route, Navigate } from "react-router-dom"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Cards } from "../utils/user/cardsHome"
 import { Home } from "./pages/home/home"
 import { Agendamentos } from "./pages/agendamento/agendamentos"
 import { Produtos } from "./pages/produtos/produtos"
 import { Cursos } from "./pages/cursos/cursos"
 import styled from "styled-components"
+import { useLocation } from "react-router-dom"
 
 const Background = styled.img<{ $ativa: boolean }>`
     position: fixed;
@@ -38,8 +39,12 @@ const ContainerRoutes = styled.div`
 `
 
 export const AppUser = () => {
+    const [indexAtual, setIndexAtual] = useState(0);
+    const location = useLocation();
 
-    const [indexAtual, setIndexAtual] = useState(0)
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location]);
 
     return (
         <>
@@ -60,5 +65,5 @@ export const AppUser = () => {
                 </ContainerRoutes>
             </ContainerAppUser>
         </>
-    )
-}
+    );
+};

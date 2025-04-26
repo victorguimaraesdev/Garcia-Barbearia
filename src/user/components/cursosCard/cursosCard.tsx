@@ -5,7 +5,7 @@ import { SubCardList } from "../../../utils/subCardsCursos";
 const KeyFrame = keyframes`
   0% {
     opacity: 0;
-    transform: translateY(200px);
+    transform: translateY(100px);
   }
   100% {
     opacity: 0.9;
@@ -21,9 +21,9 @@ const Container = styled.div`
 const Caixa = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   width: 100%;
-  height: auto;
+  height: 100%;
   padding-top: 100px;
   gap: 20px;
 
