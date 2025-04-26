@@ -14,12 +14,11 @@ const KeyFrame = keyframes`
 `;
 const Container = styled.div`
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 `;
 
 const ArrowLeft = styled(SlArrowLeft)`
@@ -49,14 +48,24 @@ const ArrowRight = styled(SlArrowRight)`
 `;
 
 const Bolinha = styled.div<{ $selecionado: boolean }>`
-  position: relative;
-  top: 300px;
-  margin-left: 10px;
   width: 15px;
   height: 15px;
   border-radius: 50%;
   border: 2px solid white;
   background-color: ${({ $selecionado }) => ($selecionado ? "white" : "none")};
+`;
+
+const CaixaBolinha = styled.div`
+    position: fixed;
+    bottom: 50px;
+    right: calc(50% - 50px);
+    width: 100px;
+    gap: 10px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
 `;
 
 const PseudoCard = styled.div`
@@ -66,7 +75,7 @@ const PseudoCard = styled.div`
   flex-direction: column;
   position: absolute;
   width: 16%;
-  height: 400px;
+  height: 600px;
   z-index: 1;
   animation: ${KeyFrame} 1s ease-in-out;
 
@@ -141,9 +150,11 @@ export const Banner = ({ setIndexAtual, indexAtual }: BannerProps) => {
     <Container>
       <ArrowLeft onClick={() => trocarImagem("Anterior")} />
       <ArrowRight onClick={() => trocarImagem("Proxima")} />
+        <CaixaBolinha>
       {Cards.map((_, i) => (
         <Bolinha key={i} $selecionado={i === indexAtual} />
       ))}
+      </CaixaBolinha>
       <PseudoCard>
         {Cards.map((src, i) => (
           <Icone key={i} src={src.icones} $ativo={i === indexAtual} draggable={false} />
