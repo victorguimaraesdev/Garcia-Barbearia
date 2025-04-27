@@ -7,7 +7,7 @@ export const GlobalStyle = createGlobalStyle`
        box-sizing: border-box;
        font-family: "Roboto", sans-serif;
        user-select: none;
-        -webkit-tap-highlight-color: none;
+        -webkit-tap-highlight-color: transparent;
         -webkit-touch-callout: none;
    }
 
