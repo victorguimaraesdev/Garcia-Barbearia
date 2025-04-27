@@ -15,20 +15,31 @@ const fadeInUp = keyframes`
 
 const Container = styled.div`
     width: 100%;
-    height: 100%;
+    height: auto;
     display: flex;
-    justify-content: start;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+    justify-content: start;
 `;
 
 const GridProdutos = styled.div`
     display: flex;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     justify-content: center;
-    gap: 20px;
+    align-items: start;
+
     width: 100%;
     max-width: 1200px;
+
+    height: auto;
+    min-height: 100%;
+    gap: 20px;
+    
+    @media (max-width: 768px) {
+        flex-flow: column nowrap;
+        justify-content: start;
+        align-items: center;
+    }
 `;
 
 const CardProduto = styled.div<{ $delay: number }>`
@@ -100,21 +111,21 @@ export const Produtos = () => {
 
     return (
         <Container>
-                <GridProdutos>
-                    {produtos.map((produto, i) => (
-                        <CardProduto key={i} $delay={i * 0.3}>
-                            <ImagemProduto src={produto.imagem} alt={produto.titulo} />
-                            <TituloProduto>{produto.titulo}</TituloProduto>
-                            <DescricaoProduto>{produto.descricao}</DescricaoProduto>
-                            <ContainerEncomentePreco href="https://api.whatsapp.com/send?phone=5515997316945"
-                                target="_blank"
-                                rel="noopener noreferrer">
-                                <PrecoProduto>{produto.preco}</PrecoProduto>
-                                <BotaoEncomende>Encomende</BotaoEncomende>
-                            </ContainerEncomentePreco>
-                        </CardProduto>
-                    ))}
-                </GridProdutos>
+            <GridProdutos>
+                {produtos.map((produto, i) => (
+                    <CardProduto key={i} $delay={i * 0.3}>
+                        <ImagemProduto src={produto.imagem} alt={produto.titulo} />
+                        <TituloProduto>{produto.titulo}</TituloProduto>
+                        <DescricaoProduto>{produto.descricao}</DescricaoProduto>
+                        <ContainerEncomentePreco href="https://api.whatsapp.com/send?phone=5515997316945"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            <PrecoProduto>{produto.preco}</PrecoProduto>
+                            <BotaoEncomende>Encomende</BotaoEncomende>
+                        </ContainerEncomentePreco>
+                    </CardProduto>
+                ))}
+            </GridProdutos>
         </Container>
     );
 };

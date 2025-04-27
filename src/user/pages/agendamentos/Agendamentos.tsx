@@ -7,7 +7,7 @@ import { FormularioCard } from "./FormularioCard.tsx";
 const KeyFrame = keyframes`
   0% {
     opacity: 0;
-    transform: translateY(0px);
+    transform: translateY(100px);
   }
   100% {
     opacity: 0.9;
@@ -58,6 +58,7 @@ const Card = styled.div<{ $delay: number }>`
     padding: 15px;
     width: 95%;
   }
+
 `;
 
 const ContainerInicio = styled.div`
@@ -140,10 +141,11 @@ export const Agendamentos = () => {
           <Botão onClick={() => setOpenModal(true)}>Agendar</Botão>
         </Card>
       ))}
-      <Modal isOpen={openModal} onClose={() => setOpenModal(false)}>
-        <FormularioCard onAgendamentoSucesso={() => setOpenModal(false)} />
-      </Modal>
-      
+      {openModal && (
+        <Modal closeModal={() => setOpenModal(false)}>
+          <FormularioCard onAgendamentoSucesso={() => setOpenModal(false)} />
+        </Modal>
+      )}
     </Container>
   );
 };

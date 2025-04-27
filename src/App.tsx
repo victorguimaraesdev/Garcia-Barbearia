@@ -12,7 +12,7 @@ function App() {
 
     return (
         <>
-            {app ? <AppUser /> : <AppAdmin setApp={setApp} /> }
+            {app ? <AppUser /> : <AppAdmin setApp={setApp} />}
         </>
     );
 }

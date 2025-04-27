@@ -1,13 +1,13 @@
 import { UserHeader } from "./components/UserHeader"
-import { Routes, Route, Navigate } from "react-router-dom"
-import { useState, useEffect } from "react"
+import { Routes, Route, Navigate, useLocation } from "react-router-dom"
+import { useState, useRef, useEffect } from "react"
 import { Cards } from "../utils/user/cardsHome"
 import { Home } from "./pages/home/Home"
-import { Agendamentos } from "./pages/agendamentos/agendamentos"
+import { Agendamentos } from "./pages/agendamentos/Agendamentos"
 import { Produtos } from "./pages/produtos/Produtos"
 import { Cursos } from "./pages/cursos/Cursos"
 import styled from "styled-components"
-import { useLocation } from "react-router-dom"
+
 
 const Background = styled.img<{ $ativa: boolean }>`
     position: fixed;
@@ -45,11 +45,14 @@ const ContainerRoutes = styled.div`
 
 export const AppUser = () => {
     const [indexAtual, setIndexAtual] = useState(0);
+    const pageRef = useRef<HTMLDivElement>(null);
     const location = useLocation();
 
     useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [location]);
+		if (pageRef.current) {
+			pageRef.current.scrollTo(0, 0);
+		}
+	}, [location]);
 
     return (
         <>
@@ -58,7 +61,7 @@ export const AppUser = () => {
             ))}
             <ContainerAppUser>
                 <UserHeader />
-                <ContainerRoutes>
+                <ContainerRoutes ref={pageRef}>
                     <Routes>
                         <Route path="*" element={<Navigate to="/home" />} />
                         <Route path="/" element={<Navigate to="/home" />} />

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { Link as Link2, useLocation } from "react-router-dom";
-import { Blur } from "../../utils/user/blur";
+import { Blur } from "../../utils/styles/blur";
 
 const Barra = styled.div`
   width: 100%;

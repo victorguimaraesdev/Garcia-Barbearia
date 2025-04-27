@@ -14,12 +14,12 @@ const KeyFrame = keyframes`
 `;
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
 `;
 
 const Card = styled.div`
