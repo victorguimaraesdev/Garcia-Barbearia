@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Login } from "../../googleAuth/Auth";
+import { Login } from "../../components/GoogleAuth";
 import styled from "styled-components";
 import API from "../../../utils/API";
 

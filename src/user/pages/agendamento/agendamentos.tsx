@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { AgendamentoCard } from "../../components/agendamentoCard/agendamentoCard";
+import { AgendamentoCard } from "./AgendamentoCard";
 
 const Container = styled.div`
     overflow-y: auto;

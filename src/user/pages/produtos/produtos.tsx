@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ProdutoLista } from "./produtosLista";
+import { ProdutoLista } from "./ProdutosLista";
 
 const Container = styled.div`
     overflow-y: auto;

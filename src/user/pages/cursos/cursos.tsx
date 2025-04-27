@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { CursosCard } from "./cursosCard";
+import { CursosCard } from "./CursosCard";
 
 const Container = styled.div`
     overflow-y: auto;
