@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { produtos } from "../../../utils/cardsProdutos";
+import { produtos } from "../../../utils/user/cardsProdutos";
 import { keyframes } from "styled-components";
 
 const fadeInUp = keyframes`

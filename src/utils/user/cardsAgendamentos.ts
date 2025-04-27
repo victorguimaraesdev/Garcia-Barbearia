@@ -15,4 +15,32 @@ export const Cards = [
     Corte: "Bigode",
     Valor: "R$ 10,00",
   },
+  {
+    Corte: "Bigode",
+    Valor: "R$ 10,00",
+  },
+  {
+    Corte: "Bigode",
+    Valor: "R$ 10,00",
+  },
+  {
+    Corte: "Bigode",
+    Valor: "R$ 10,00",
+  },
+  {
+    Corte: "Bigode",
+    Valor: "R$ 10,00",
+  },
+  {
+    Corte: "Bigode",
+    Valor: "R$ 10,00",
+  },
+  {
+    Corte: "Bigode",
+    Valor: "R$ 10,00",
+  },
+  {
+    Corte: "Bigode",
+    Valor: "R$ 10,00",
+  },
 ];

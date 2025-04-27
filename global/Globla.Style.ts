@@ -16,9 +16,7 @@ export const GlobalStyle = createGlobalStyle`
        --secundaria: #39FF14;
        --contraste: #000000;
        --supp:rgb(31, 31, 31);
-       --transparent: rgba(0, 0, 0, 0.5);
    }
-
 
    body {
     background: var(--contraste); 

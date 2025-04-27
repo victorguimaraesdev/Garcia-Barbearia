@@ -2,13 +2,14 @@ import styled from "styled-components";
 import { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { Link as Link2, useLocation } from "react-router-dom";
+import { Blur } from "../../../utils/blur";
 
 const Barra = styled.div`
   width: 100%;
   height: 70px;
 `;
 const Container = styled.div`
-  background: var(--transparent);
+  ${Blur()};
   position: fixed;
   top: 0;
   display: flex;

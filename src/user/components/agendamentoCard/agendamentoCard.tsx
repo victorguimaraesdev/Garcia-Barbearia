@@ -7,7 +7,7 @@ import { FormularioCard } from "./formularioCard/formularioCard.tsx";
 const KeyFrame = keyframes`
   0% {
     opacity: 0;
-    transform: translateY(100px);
+    transform: translateY(0px);
   }
   100% {
     opacity: 0.9;
@@ -22,12 +22,10 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  padding: 100px;
   gap: 20px;
 
   @media (max-width: 768px) {
     padding: 10px;
-    padding-bottom: 100px;
     gap: 10px;
   }
 `;
@@ -88,7 +86,7 @@ const ContainerInformações = styled.div`
   flex-direction: column;
   justify-content: space-around;
   width: 100%;
-  height: auto;
+  height: 100%;
   font-weight: 200;
 `;
 
