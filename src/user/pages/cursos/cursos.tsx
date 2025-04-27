@@ -1,7 +1,7 @@
 import { keyframes } from "styled-components";
 import styled from "styled-components";
 import { SubCardList } from "../../../utils/user/subCardsCursos";
-
+// a
 const KeyFrame = keyframes`
   0% {
     opacity: 0;

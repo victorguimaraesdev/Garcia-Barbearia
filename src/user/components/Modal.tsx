@@ -1,5 +1,5 @@
 import styled, { keyframes, css } from "styled-components";
-import { ReactNode, useState, useEffect } from "react";
+import { ReactNode, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { Blur } from "../../utils/styles/blur";
 
