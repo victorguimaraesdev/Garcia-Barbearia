@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
-import { Cards } from "../../../utils/user/cardsHome.ts";
+import { Cards } from "../../utils/user/cardsHome.ts";
 
 const KeyFrame = keyframes`
   0% {

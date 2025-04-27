@@ -1,4 +1,4 @@
-import { Banner } from "../../components/banner/banner";
+import { Banner } from "../../components/banner";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -6,9 +6,9 @@ const Container = styled.div`
     overflow-x: hidden;
     width: 100%;
     
-    padding-top: 5%;
-    padding-bottom: 5%;
-    height: calc(100% - 5%);
+    padding-top: 6%;
+    padding-bottom: 6%;
+    height: calc(100% - 6%);
 
     @media (max-width: 768px) {
       padding-top: 10%;

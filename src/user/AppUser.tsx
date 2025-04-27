@@ -1,4 +1,4 @@
-import { UserHeader } from "./components/header/header"
+import { UserHeader } from "./components/UserHeader"
 import { Routes, Route, Navigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { Cards } from "../utils/user/cardsHome"

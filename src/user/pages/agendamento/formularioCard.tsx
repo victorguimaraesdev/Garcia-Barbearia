@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Login } from "../../googleAuth/Auth";
 import styled from "styled-components";
-import API from "../../../../utils/api/API";
+import API from "../../../utils/API";
 
 const Container = styled.div`
     display: flex;

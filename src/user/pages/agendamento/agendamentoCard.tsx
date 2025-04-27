@@ -1,8 +1,8 @@
 import styled, { keyframes } from "styled-components";
 import { Cards } from "../../../utils/user/cardsAgendamentos.ts";
-import { Modal } from "../modal/modal.tsx";
+import { Modal } from "../../components/modal.tsx";
 import { useState } from "react";
-import { FormularioCard } from "./formularioCard/formularioCard.tsx";
+import { FormularioCard } from "./formularioCard.tsx";
 
 const KeyFrame = keyframes`
   0% {
