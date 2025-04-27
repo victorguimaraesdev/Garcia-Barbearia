@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { Cards } from "../utils/user/cardsHome"
 import { Home } from "./pages/home/Home"
-import { Agendamentos } from "./pages/agendamento/Agendamentos"
+import { Agendamentos } from "./pages/agendamentos/agendamentos"
 import { Produtos } from "./pages/produtos/Produtos"
 import { Cursos } from "./pages/cursos/Cursos"
 import styled from "styled-components"
@@ -27,9 +27,20 @@ const ContainerAppUser = styled.div`
 `
 
 const ContainerRoutes = styled.div`
+    overflow-x: hidden;
+    overflow-y: auto;
+
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+  
+    padding-top: 6%;
+    padding-bottom: 6%;
+    height: calc(100% - 6%);
+
+    @media (max-width: 768px) {
+        padding-top: 10%;
+        padding-bottom: 10%;
+        height: calc(100% - 10%);
+    }
 `
 
 export const AppUser = () => {

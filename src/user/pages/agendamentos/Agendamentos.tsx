@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { Cards } from "../../../utils/user/cardsAgendamentos.ts";
-import { Modal } from "../../components/ModalAgenda.tsx";
+import { Modal } from "../../components/Modal.tsx";
 import { useState } from "react";
 import { FormularioCard } from "./FormularioCard.tsx";
 
@@ -124,7 +124,7 @@ const Botão = styled.button`
   }
 `;
 
-export const AgendamentoCard = () => {
+export const Agendamentos = () => {
   const [openModal, setOpenModal] = useState(false);
   return (
     <Container>
