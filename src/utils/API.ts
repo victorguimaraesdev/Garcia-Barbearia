@@ -21,7 +21,7 @@ class API {
         if (token) {
             axios.defaults.headers.common["authorization"] = `Bearer ${token}`;
             try {
-                const { status } = await axios.post("http://localhost:3000/api/usuarios", Headers)
+                const { status } = await axios.post(`${this.address}/api/usuarios`, Headers)
 
                 if (status === 200) {
                     localStorage.setItem("token", token);
