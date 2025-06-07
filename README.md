@@ -16,6 +16,9 @@
 - **Banco de Dados**:  Firebase
 - **Hospedagem**:  Netlify
 
+## ♠️ Link do Back-end
+https://github.com/Zelchi/Garcia-Barbearia-API
+
 ## 💡 Desenvolvido por
 
 - [Davi "Zelchi" Lima](https://github.com/Zelchi)
